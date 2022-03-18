@@ -10,6 +10,7 @@ import Home from './pages/Home';
 import AdminLayout from './pages/layouts/AdminLayout';
 import ProductManager from './pages/layouts/ProductManager';
 import Dashboard from './pages/Dashboard';
+import Add_pro from './pages/admin/product/Add_pro';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -33,31 +34,19 @@ const removeItem = (id:number)=>{
       {products.map((item,index)=>{
         return <div key={index}>{item.name}<button onClick={()=>removeItem(item._id)}>Remove</button></div>
       })}
-      <header>
-      <ul>
-          <li>
-          <NavLink to="/">Home Page</NavLink>
-          </li>
-          <li>
-          <NavLink to="/product">Product Page</NavLink>
-          </li>
-          <li>
-          <NavLink to="/about">About</NavLink>
-          </li>
-        </ul>
-      </header>
       <main>
         <Routes>
         <Route path='/' element={<WebsiteLayout/>}>
-<Route index element = {<Home/>}/>
-<Route path='product' element={<h1>Hien thi san pham 123</h1>}/>
-<Route path='about' element={<h1>About</h1>}/>
+         <Route index element = {<Home/>}/>
+         <Route path='product' element={<h1>Hien thi san pham 123</h1>}/>
+          <Route path='about' element={<h1>About</h1>}/>
         </Route>
 
         <Route path="admin" element={<AdminLayout/>}>
           <Route index element={<Navigate to="dashboard"/>} />
                 <Route path="dashboard" element={<Dashboard />} />
                 <Route path="products" element={<ProductManager />} />
+                <Route path="add-pro" element={<Add_pro />} />
           </Route>
         </Routes>
       </main>
