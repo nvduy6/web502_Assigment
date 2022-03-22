@@ -4,7 +4,7 @@ import logo from './logo.svg'
 import "./dashboard.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { IProduct } from './type/Product';
-import { list, remove } from './api/Product';
+import { add, list, remove } from './api/Product';
 import WebsiteLayout from './pages/layouts/WebsiteLayout';
 import Home from './pages/Home';
 import AdminLayout from './pages/layouts/AdminLayout';
@@ -26,13 +26,17 @@ const removeItem = (id:number)=>{
   // call api
   remove(id)
   // reRender
-  setProducts(products.filter(item=>item._id!==id))
+  setProducts(products.filter(item=>item.id!==id))
+}
+const onHandlerAdd = async (product:IProduct)=>{
+  const {data} = await add(product);
+  setProducts([...products,data])
 }
 
   return (
     <div className="App">
       {products.map((item,index)=>{
-        return <div key={index}>{item.name}<button onClick={()=>removeItem(item._id)}>Remove</button></div>
+        return <div key={index}>{item.name}<button onClick={()=>removeItem(item.id)}>Remove</button></div>
       })}
       <main>
         <Routes>
@@ -45,8 +49,10 @@ const removeItem = (id:number)=>{
         <Route path="admin" element={<AdminLayout/>}>
           <Route index element={<Navigate to="dashboard"/>} />
                 <Route path="dashboard" element={<Dashboard />} />
-                <Route path="products" element={<ProductManager />} />
-                <Route path="add-pro" element={<Add_pro />} />
+                <Route path="products">
+                    <Route index element={<ProductManager />}/>
+                    <Route path='add' element={<Add_pro name='duy' onAdd={onHandlerAdd}/>}/>
+                </Route>
           </Route>
         </Routes>
       </main>

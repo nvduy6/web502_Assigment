@@ -5,7 +5,7 @@ const ProductManager = (props:Props) => {
   return (
     <div>
       
-    <h1><Link to="/admin/add-pro">Thêm mới</Link></h1>
+    <h1><Link to="/admin/products/add">Thêm mới</Link></h1>
    <table className="table">
   <thead>
     <tr>
