@@ -8,9 +8,10 @@ import { add, list, remove } from './api/Product';
 import WebsiteLayout from './pages/layouts/WebsiteLayout';
 import Home from './pages/Home';
 import AdminLayout from './pages/layouts/AdminLayout';
-import ProductManager from './pages/layouts/ProductManager';
+
 import Dashboard from './pages/Dashboard';
 import Add_pro from './pages/admin/product/Add_pro';
+import ProductManager from './pages/admin/product/ProductManager';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -35,9 +36,6 @@ const onHandlerAdd = async (product:IProduct)=>{
 
   return (
     <div className="App">
-      {products.map((item,index)=>{
-        return <div key={index}>{item.name}<button onClick={()=>removeItem(item.id)}>Remove</button></div>
-      })}
       <main>
         <Routes>
         <Route path='/' element={<WebsiteLayout/>}>
@@ -50,7 +48,7 @@ const onHandlerAdd = async (product:IProduct)=>{
           <Route index element={<Navigate to="dashboard"/>} />
                 <Route path="dashboard" element={<Dashboard />} />
                 <Route path="products">
-                    <Route index element={<ProductManager />}/>
+                    <Route index element={<ProductManager products={products} onRemove={removeItem}/>}/>
                     <Route path='add' element={<Add_pro name='duy' onAdd={onHandlerAdd}/>}/>
                 </Route>
           </Route>
