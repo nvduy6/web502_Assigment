@@ -8,7 +8,7 @@ const Header = () => {
     </a>
     <ul className="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
       <li><NavLink to="/" className="nav-link px-2 link-secondary">Overview</NavLink></li>
-      <li><NavLink to="/product" className="nav-link px-2 link-dark">Inventory</NavLink></li>
+      <li><NavLink to="/products" className="nav-link px-2 link-dark">Inventory</NavLink></li>
       <li><NavLink to="/about" className="nav-link px-2 link-dark">Customers</NavLink></li>
       <li><NavLink to="/" className="nav-link px-2 link-dark">Products</NavLink></li>
     </ul>

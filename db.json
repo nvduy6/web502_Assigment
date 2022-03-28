@@ -1,7 +1,7 @@
 {
   "products": [
     {
-      "name": "nukeviet",
+      "name": "nukeviet12",
       "price": "150",
       "id": 1
     },
@@ -9,6 +9,12 @@
       "name": "duynvph15542@fpt.edu.vn",
       "price": "140.000",
       "id": 2
+    }
+  ],
+  "categorys": [
+    {
+      "name": "nukeviet",
+      "id": 1
     }
   ]
 }
