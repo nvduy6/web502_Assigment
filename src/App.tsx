@@ -5,7 +5,7 @@ import "./dashboard.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { IProduct } from './type/Product';
 import { add, list, remove, update } from './api/Product';
-import { addcate, removeCate, listCate } from './api/Category';
+import { addcate, removeCate, listCate, updatecate } from './api/Category';
 import WebsiteLayout from './pages/layouts/WebsiteLayout';
 import Home from './pages/Home';
 import AdminLayout from './pages/layouts/AdminLayout';
@@ -20,11 +20,13 @@ import Product from './components/Product';
 import Signup from './pages/layouts/Signup';
 import { signin } from './api/auth';
 import Signin from './pages/layouts/Sigin';
+import Category_edit from './pages/admin/category/Category_edit';
 
 function App() {
   const [count, setCount] = useState(0)
   const [products, setProducts] = useState<IProduct[]>([]);
   const [categorys, setCategorys] = useState<ICategory[]>([])
+  // --------------products-------------------
   useEffect(()=>{
   const getProducts = async()=>{
     const {data} = await list();
@@ -32,7 +34,23 @@ function App() {
   }
   getProducts();
   },[])
-
+  // add
+  const onHandlerAdd = async (product: IProduct) => {
+    const { data } = await add(product);
+    setProducts([...products, data])
+  }
+// update
+ const onHandlerUpdate = async (product:IProduct)=>{
+   const {data} = await update(product);
+   setProducts(products.map(item=>item.id==data.id?data:item));
+ }
+  const removeItem = (id: number) => {
+    // call api
+    remove(id)
+    // reRender
+    setProducts(products.filter(item => item.id !== id))
+  }
+// ---------------Category-------------------
   useEffect(() => {
     const getCategorys = async () => {
       const { data } = await listCate();
@@ -40,32 +58,19 @@ function App() {
     }
     getCategorys();
   }, [])
-
   // delete-----------------------------------
-  const removeItem = (id: number) => {
-    // call api
-    remove(id)
-    // reRender
-    setProducts(products.filter(item => item.id !== id))
-  }
-
   const removecate = (id: number) => {
     removeCate(id)
     setCategorys(categorys.filter(item => item.id !== id))
   }
   // add------------------------------------------
-  const onHandlerAdd = async (product: IProduct) => {
-    const { data } = await add(product);
-    setProducts([...products, data])
-  }
-
- const onHandlerUpdate = async (product:IProduct)=>{
-   const {data} = await update(product);
-   setProducts(products.map(item=>item.id==data.id?data:item));
- }
   const onHandlerCate = async (category: ICategory) => {
     const { data } = await addcate(category);
     setCategorys([...categorys, data])
+  }
+  const onHandeleUpdateCate = async (category:ICategory)=>{
+    const {data}= await updatecate(category);
+    setCategorys(categorys.map(item=>item.id==data.id?data:item));
   }
 
   return (
@@ -73,7 +78,7 @@ function App() {
       <main>
         <Routes>
           <Route path='/' element={<WebsiteLayout />}>
-            <Route index element={<Home />} />
+            <Route index element={<Home products={products} />} />
             <Route path='product' element={<h1>Hien thi san pham 123</h1>} />
             <Route path='about' element={<h1>About</h1>} />
           </Route>
@@ -89,6 +94,7 @@ function App() {
             <Route path='categorys'>
               <Route index element={<Category_list categorys={categorys} onRemoveCate={removecate} />} />
               <Route path='add' element={<Category_add name='duy' onAdd={onHandlerCate} />} />
+              <Route path=':id/edit' element={<Category_edit onUpdateCate={onHandeleUpdateCate}/>}/>
             </Route>
           </Route>
           <Route path='/signup' element={<Signup/>}/>

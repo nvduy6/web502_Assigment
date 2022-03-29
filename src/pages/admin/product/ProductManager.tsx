@@ -25,8 +25,8 @@ const ProductManager = (props: Props) => {
       dataIndex: 'id',
       render: (id:number) => (
         <Space size="middle">
-        <Button type="primary" style={{ background: '#FFCC00', color: '#000000', border: 'none'}}><Link to={`/admin/products/${id}/edit`}>Edit</Link></Button>
-        <Button type="primary" danger onClick={() => props.onRemove(id)}>Remove</Button>
+        <Button type="primary" style={{ background: '#FFCC00', color: '#000000', border: 'none',borderRadius:15}}><Link to={`/admin/products/${id}/edit`}>Edit</Link></Button>
+        <Button type="primary" style={{borderRadius:15}} danger onClick={() => props.onRemove(id)}>Remove</Button>
         </Space>
       )
     },

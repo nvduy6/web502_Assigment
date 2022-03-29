@@ -1,10 +1,35 @@
 import React from 'react'
-type Props = {}
+import { IProduct } from '../type/Product'
+type Props = {
+ products:IProduct[]; 
+}
 const Home = (props:Props) => {
+  
   return (
     <div>  <div className="album py-2 bg-light">
     <div className="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-3">
-      <div className="col">
+    {props.products.map((item,index)=>{
+      return(
+<div className="col">
+    <div className="card shadow-sm" key={index}>
+      <svg className="bd-placeholder-img card-img-top" width="100%" height={225} xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: صورة مصغرة" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef" dy=".3em">صورة مصغرة</text></svg>
+      <div className="card-body">
+        <p className="card-text">{item.name}</p>
+        <div className="d-flex justify-content-between align-items-center">
+          <div className="btn-group">
+            <button type="button" className="btn btn-sm btn-outline-secondary">عرض</button>
+            <button type="button" className="btn btn-sm btn-outline-secondary">تعديل</button>
+          </div>
+          <small className="text-muted">{item.price}</small>
+        </div>
+      </div>
+    </div>
+  </div>
+      )
+    
+  })}
+      
+      {/* <div className="col">
         <div className="card shadow-sm">
           <svg className="bd-placeholder-img card-img-top" width="100%" height={225} xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: صورة مصغرة" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef" dy=".3em">صورة مصغرة</text></svg>
           <div className="card-body">
@@ -63,22 +88,7 @@ const Home = (props:Props) => {
             </div>
           </div>
         </div>
-      </div>
-      <div className="col">
-        <div className="card shadow-sm">
-          <svg className="bd-placeholder-img card-img-top" width="100%" height={225} xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: صورة مصغرة" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef" dy=".3em">صورة مصغرة</text></svg>
-          <div className="card-body">
-            <p className="card-text">هذه بطاقة أوسع مع نص داعم أدناه كمقدمة طبيعية لمحتوى إضافي. هذا المحتوى أطول قليلاً.</p>
-            <div className="d-flex justify-content-between align-items-center">
-              <div className="btn-group">
-                <button type="button" className="btn btn-sm btn-outline-secondary">عرض</button>
-                <button type="button" className="btn btn-sm btn-outline-secondary">تعديل</button>
-              </div>
-              <small className="text-muted">9 دقائق</small>
-            </div>
-          </div>
-        </div>
-      </div>
+      </div> */}
     </div>
   </div>
   {/* bài viết */}

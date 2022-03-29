@@ -17,23 +17,21 @@ const Category_list = (props: Props) => {
           dataIndex: 'name',
         },
         {
-          title: 'Price',
-          dataIndex: 'price',
-        },
-        {
           title: 'TT',
           dataIndex: 'id',
           render: (id:number) => (
             <Space size="middle">
-            <Button type="primary" style={{ background: '#FFCC00', color: '#000000', border: 'none'}}><Link to={`/admin/products/${id}/edit`}>Edit</Link></Button>
-            <Button type="primary" danger onClick={() => props.onRemoveCate(id)}>Remove</Button>
+            <Button type="primary" style={{ background: '#FFCC00', color: '#000000', border: 'none', borderRadius:15}}><Link to={`/admin/categorys/${id}/edit`}>Edit</Link></Button>
+            <Button type="primary" style={{borderRadius:15}} danger onClick={() => props.onRemoveCate(id)}>Remove</Button>
             </Space>
           )
         },
       
       ]
       const dataSource = props.categorys.map((item, index) => {
+       
         return {
+          
           key: index ,
           stt:index+1,
           name: item.name,
