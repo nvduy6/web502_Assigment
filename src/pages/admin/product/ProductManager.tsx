@@ -1,42 +1,47 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { IProduct } from '../../../type/Product'
+import { Table,Space,Button } from 'antd';
 type Props = {
   products: IProduct[];
   onRemove: (id: number) => void
 }
 const ProductManager = (props: Props) => {
-  return (
-    <div>
-
-      <h1><Link to="/admin/products/add">Thêm mới</Link></h1>
-      <table className="table">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">Price</th>
-            <th scope="col">Uerd</th>
-          </tr>
-        </thead>
-        <tbody>
-          {props.products.map((item, index) => {
-            return (
-              <tr key={index}>
-                <th scope="row">{index+1}</th>
-                <td>{item.name}</td>
-                <td>{item.price}</td>
-                <td>
-                  <button onClick={()=>props.onRemove(item.id)}>Remove</button>
-                  <Link to="/{item.id}/edit">Update</Link>
-                  </td>
-              </tr>
-            )
-          })}
-        </tbody>
-      </table>
-    </div>
-  )
+  const columns = [
+    {
+      title: 'Stt',
+      dataIndex: 'stt',
+    },
+    {
+      title: 'Name',
+      dataIndex: 'name',
+    },
+    {
+      title: 'Price',
+      dataIndex: 'price',
+    },
+    {
+      title: 'TT',
+      dataIndex: 'id',
+      render: (id:number) => (
+        <Space size="middle">
+        <Button type="primary" style={{ background: '#FFCC00', color: '#000000', border: 'none'}}><Link to={`/admin/products/${id}/edit`}>Edit</Link></Button>
+        <Button type="primary" danger onClick={() => props.onRemove(id)}>Remove</Button>
+        </Space>
+      )
+    },
+  
+  ]
+  const dataSource = props.products.map((item, index) => {
+    return {
+      key: index ,
+      stt:index+1,
+      name: item.name,
+      price: item.price,
+      id:item.id,
+    }
+  })
+  return (<Table columns={columns} dataSource={dataSource} />)
 }
 
 export default ProductManager

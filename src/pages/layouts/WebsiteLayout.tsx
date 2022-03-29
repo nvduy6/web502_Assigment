@@ -1,8 +1,8 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
 import Category from '../Category'
-import Footer from '../Footer'
-import Header from '../Header'
+import Footer from '../../components/Footer';
+import Header from '../../components/Header'
 type Props ={}
 const WebsiteLayout = (props:Props) => {
   return (

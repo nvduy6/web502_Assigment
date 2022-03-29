@@ -17,6 +17,9 @@ import { ICategory } from './type/Category';
 import Category_list from './pages/admin/category/Category_list';
 import Edit_pro from './pages/admin/product/Edit_pro';
 import Product from './components/Product';
+import Signup from './pages/layouts/Signup';
+import { signin } from './api/auth';
+import Signin from './pages/layouts/Sigin';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -88,6 +91,8 @@ function App() {
               <Route path='add' element={<Category_add name='duy' onAdd={onHandlerCate} />} />
             </Route>
           </Route>
+          <Route path='/signup' element={<Signup/>}/>
+        <Route path='/signin' element={<Signin/>}/>
         </Routes>
       </main>
     </div>

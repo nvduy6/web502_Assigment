@@ -13,14 +13,14 @@ import {
   ShopOutlined,
   TeamOutlined,
   BankOutlined,
-  FunnelPlotOutlined ,
+  FunnelPlotOutlined,
 } from '@ant-design/icons';
 
 const { Header, Content, Footer, Sider } = Layout;
 type Props = {}
 const AdminLayout = (props: Props) => {
   return (
-    <Layout hasSider>
+    <Layout hasSider style={{minHeight:'100vh'}}>
       <Sider
         style={{
           overflow: 'auto',
@@ -44,13 +44,13 @@ const AdminLayout = (props: Props) => {
             <Link to={"/admin/products"}>Home </Link>
           </Menu.Item>
           <Menu.Item key="2" icon={<ShopOutlined />}>
-          <Link to={"/admin/products"}>Product</Link>
+            <Link to={"/admin/products"}>Product</Link>
           </Menu.Item>
           <Menu.Item key="3" icon={<FunnelPlotOutlined />}>
-          <Link to={"/admin/products"}>Category</Link>
+            <Link to={"/admin/categorys"}>Category</Link>
           </Menu.Item>
           <Menu.Item key="4" icon={<UserAddOutlined />}>
-          <Link to={"/admin/products"}>User</Link>
+            <Link to={"/admin/products"}>User</Link>
           </Menu.Item>
           <Menu.Item key="5" icon={<CloudOutlined />}>
             nav 5
