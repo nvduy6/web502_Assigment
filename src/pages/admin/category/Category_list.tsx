@@ -35,7 +35,7 @@ const Category_list = (props: Props) => {
           key: index ,
           stt:index+1,
           name: item.name,
-          id:item.id,
+          id:item._id,
         }
       })
       return (<Table columns={columns} dataSource={dataSource} />)

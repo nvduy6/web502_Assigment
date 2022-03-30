@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
 import {useForm,SubmitHandler} from 'react-hook-form';
-import {useNavigate,useParams} from 'react-router-dom';
+import {useNavigate,useParams,Link} from 'react-router-dom';
 import { read } from '../../../api/Product';
 import { IProduct } from '../../../type/Product';
+import {Breadcrumb } from 'antd';
 type Edit_proProps={
     onUpdate:(product:IProduct)=>void;
 };
@@ -28,6 +29,13 @@ const onSubmit:SubmitHandler<TypeInputs>= data=>{
 }
   return (
     <div>
+        <div>
+ <Breadcrumb style={{ margin: '16px 0' }}>
+    <Breadcrumb.Item><Link to='/admin/dashboard'>Page</Link></Breadcrumb.Item>
+    <Breadcrumb.Item><Link to='/admin/products'>Product</Link></Breadcrumb.Item>
+    <Breadcrumb.Item>Edit</Breadcrumb.Item>
+  </Breadcrumb>
+  </div>
         <form action="" onSubmit={handleSubmit(onSubmit)}>
             <div>
                 <label htmlFor="">Name</label>

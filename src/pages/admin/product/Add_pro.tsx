@@ -1,6 +1,7 @@
-import React from 'react'
 import {useForm,SubmitHandler} from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import { Button, Breadcrumb } from 'antd';
+import {Link} from 'react-router-dom'
 type ProductAddProps={
   name:string,
   onAdd:(product:TypeInputs)=>void;
@@ -17,6 +18,17 @@ const onSubmit:SubmitHandler<TypeInputs>=data=>{
   navigate("/admin/products")
 }
   return (
+  <div>
+
+  
+  <div>
+ <Breadcrumb style={{ margin: '16px 0' }}>
+    <Breadcrumb.Item><Link to='/admin/dashboard'>Page</Link></Breadcrumb.Item>
+    <Breadcrumb.Item><Link to='/admin/products'>Product</Link></Breadcrumb.Item>
+    <Breadcrumb.Item>Add</Breadcrumb.Item>
+  </Breadcrumb>
+  </div>
+   
     <form onSubmit={handleSubmit(onSubmit)}>
   <div className="mb-3">
     <label htmlFor="exampleInputEmail1" className="form-label">Name</label>
@@ -29,7 +41,7 @@ const onSubmit:SubmitHandler<TypeInputs>=data=>{
  
   <button type="submit" className="btn btn-primary">Add</button>
 </form>
-
+</div>
   )
 }
 

@@ -16,41 +16,40 @@ import Category_add from './pages/admin/category/Category_add';
 import { ICategory } from './type/Category';
 import Category_list from './pages/admin/category/Category_list';
 import Edit_pro from './pages/admin/product/Edit_pro';
-import Product from './components/Product';
 import Signup from './pages/layouts/Signup';
-import { signin } from './api/auth';
 import Signin from './pages/layouts/Sigin';
 import Category_edit from './pages/admin/category/Category_edit';
+import PrivateRouter from './components/PrivateRouter';
 
 function App() {
   const [count, setCount] = useState(0)
   const [products, setProducts] = useState<IProduct[]>([]);
   const [categorys, setCategorys] = useState<ICategory[]>([])
   // --------------products-------------------
-  useEffect(()=>{
-  const getProducts = async()=>{
-    const {data} = await list();
-    setProducts(data);
-  }
-  getProducts();
-  },[])
+  useEffect(() => {
+    const getProducts = async () => {
+      const { data } = await list();
+      setProducts(data);
+    }
+    getProducts();
+  }, [])
   // add
   const onHandlerAdd = async (product: IProduct) => {
     const { data } = await add(product);
     setProducts([...products, data])
   }
-// update
- const onHandlerUpdate = async (product:IProduct)=>{
-   const {data} = await update(product);
-   setProducts(products.map(item=>item.id==data.id?data:item));
- }
+  // update
+  const onHandlerUpdate = async (product: IProduct) => {
+    const { data } = await update(product);
+    setProducts(products.map(item => item.id == data.id ? data : item));
+  }
   const removeItem = (id: number) => {
     // call api
     remove(id)
     // reRender
     setProducts(products.filter(item => item.id !== id))
   }
-// ---------------Category-------------------
+  // ---------------Category-------------------
   useEffect(() => {
     const getCategorys = async () => {
       const { data } = await listCate();
@@ -68,9 +67,9 @@ function App() {
     const { data } = await addcate(category);
     setCategorys([...categorys, data])
   }
-  const onHandeleUpdateCate = async (category:ICategory)=>{
-    const {data}= await updatecate(category);
-    setCategorys(categorys.map(item=>item.id==data.id?data:item));
+  const onHandeleUpdateCate = async (category: ICategory) => {
+    const { data } = await updatecate(category);
+    setCategorys(categorys.map(item => item.id == data.id ? data : item));
   }
 
   return (
@@ -78,7 +77,7 @@ function App() {
       <main>
         <Routes>
           <Route path='/' element={<WebsiteLayout />}>
-            <Route index element={<Home products={products} />} />
+            <Route index element={<Home />} />
             <Route path='product' element={<h1>Hien thi san pham 123</h1>} />
             <Route path='about' element={<h1>About</h1>} />
           </Route>
@@ -89,16 +88,16 @@ function App() {
             <Route path="products">
               <Route index element={<ProductManager products={products} onRemove={removeItem} />} />
               <Route path='add' element={<Add_pro name='duy' onAdd={onHandlerAdd} />} />
-              <Route path=":id/edit" element={<Edit_pro onUpdate={onHandlerUpdate}/>}/>
+              <Route path=":id/edit" element={<Edit_pro onUpdate={onHandlerUpdate} />} />
             </Route>
-            <Route path='categorys'>
+            <Route path='category'>
               <Route index element={<Category_list categorys={categorys} onRemoveCate={removecate} />} />
               <Route path='add' element={<Category_add name='duy' onAdd={onHandlerCate} />} />
-              <Route path=':id/edit' element={<Category_edit onUpdateCate={onHandeleUpdateCate}/>}/>
+              <Route path=':id/edit' element={<Category_edit onUpdateCate={onHandeleUpdateCate} />} />
             </Route>
           </Route>
-          <Route path='/signup' element={<Signup/>}/>
-        <Route path='/signin' element={<Signin/>}/>
+          <Route path='/signup' element={<Signup />} />
+          <Route path='/signin' element={<Signin />} />
         </Routes>
       </main>
     </div>

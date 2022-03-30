@@ -3,7 +3,7 @@ import {SubmitHandler, useForm} from 'react-hook-form';
 import {Link, useNavigate} from 'react-router-dom';
 type CategoryAddProps={
     name:string
-    onAdd:(category:TypeInputs)=>void;
+    onAdd:(categorys:TypeInputs)=>void;
 }
 type TypeInputs={
     name:string,
@@ -14,7 +14,7 @@ const {register,handleSubmit,formState:{errors}} = useForm<TypeInputs>();
 const navigate = useNavigate();
 const onSubmit:SubmitHandler<TypeInputs>=data=>{
     props.onAdd(data);
-    navigate("/admin/categorys");
+    navigate("/admin/category");
 }
   return (
     <div>

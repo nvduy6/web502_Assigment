@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import { getcate } from '../../../api/Category'
 import { ICategory } from '../../../type/Category'
 type Category_editProps={
-    onUpdateCate:(category:ICategory)=>void;
+    onUpdateCate:(categorys:ICategory)=>void;
 }
 type TypeInputs = {
     name:String

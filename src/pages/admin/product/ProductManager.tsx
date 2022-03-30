@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { IProduct } from '../../../type/Product'
-import { Table,Space,Button } from 'antd';
+import { Table,Space,Button, Breadcrumb } from 'antd';
 type Props = {
   products: IProduct[];
   onRemove: (id: number) => void
@@ -38,10 +38,19 @@ const ProductManager = (props: Props) => {
       stt:index+1,
       name: item.name,
       price: item.price,
-      id:item.id,
+      id:item._id,
     }
   })
-  return (<Table columns={columns} dataSource={dataSource} />)
+  return (
+    <div>
+          <Breadcrumb style={{ margin: '16px 0' }}>
+          <Breadcrumb.Item><Link to='/admin/dashboard'>Page</Link></Breadcrumb.Item>
+          <Breadcrumb.Item>Products</Breadcrumb.Item>
+        </Breadcrumb>
+        <Button type="primary" style={{ background: '#FFCC00', color: '#000000', border: 'none',borderRadius:15}}><Link to="/admin/products/add">Them moi</Link></Button>
+        <Table columns={columns} dataSource={dataSource} />
+    </div>
+  )
 }
 
 export default ProductManager
