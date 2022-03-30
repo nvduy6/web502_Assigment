@@ -20,6 +20,9 @@ import Signup from './pages/layouts/Signup';
 import Signin from './pages/layouts/Sigin';
 import Category_edit from './pages/admin/category/Category_edit';
 import PrivateRouter from './components/PrivateRouter';
+import List_post from './pages/admin/posts/List_post';
+import Add_post from './pages/admin/posts/Add_post';
+import Edit_post from './pages/admin/posts/Edit_post';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -94,6 +97,11 @@ function App() {
               <Route index element={<Category_list categorys={categorys} onRemoveCate={removecate} />} />
               <Route path='add' element={<Category_add name='duy' onAdd={onHandlerCate} />} />
               <Route path=':id/edit' element={<Category_edit onUpdateCate={onHandeleUpdateCate} />} />
+            </Route>
+            <Route path="posts">
+              <Route index element={<List_post />} />
+              <Route path='add' element={<Add_post/>}/>
+              <Route path=':id/edit' element={<Edit_post/>}/>
             </Route>
           </Route>
           <Route path='/signup' element={<Signup />} />

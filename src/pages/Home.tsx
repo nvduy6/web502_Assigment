@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { list } from '../api/Product';
 import { IProduct } from '../type/Product'
+import { Table,Space,Button, Breadcrumb } from 'antd';
+import { Link } from 'react-router-dom';
 import Blog from './Blog';
 type Props = {
 }
@@ -16,7 +18,10 @@ const Home = (props: Props) => {
   return (
     <div>
       <div className="album py-2 bg-light">
-        <div className="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-3">
+      <Breadcrumb style={{ margin: '8px 8px' }}>
+          <Breadcrumb.Item><Link to='/admin/dashboard'>Home</Link></Breadcrumb.Item>
+        </Breadcrumb>
+        <div className="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-3 px-2">
           {products.map((item, index) => {
             return (
               <div className="col">
@@ -42,7 +47,7 @@ const Home = (props: Props) => {
         </div>
       </div>
       {/* bài viết */}
-      <div >
+      <div className="container marketing">
         <Blog />
         {/* /.col-lg-4 */}
       </div>
