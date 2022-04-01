@@ -14,12 +14,12 @@ export const removeCate = (id:number)=>{
     return instance.delete(url)
 }
 export const getcate =(_id:string|undefined)=>{
-    const url = `/category/${_id}`;
+    const url = `/categorys/${_id}`;
     return instance.get(url)
     ;
 }
 export const get =(slug:string|undefined)=>{
-    const url = `/category/${slug}`;
+    const url = `/categorys/${slug}`;
     return instance.get(url)
     ;
 }

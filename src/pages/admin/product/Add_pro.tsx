@@ -2,21 +2,36 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { Button, Breadcrumb } from 'antd';
 import { Link } from 'react-router-dom'
+import { useEffect, useState } from 'react';
+import { ICategory } from '../../../type/Category';
+import { listCate } from '../../../api/Category';
 type ProductAddProps = {
   name: string,
   onAdd: (product: TypeInputs) => void;
 }
+type Props ={
+
+}
 type TypeInputs = {
   name: string,
   price: number,
-  image: string
+  image: string,
+  category:string
 }
 const Add_pro = (props: ProductAddProps) => {
+const [categorys,setCategory] = useState<ICategory[]>([]);
+useEffect(()=>{
+  const getCategorys = async ()=>{
+    const {data} = await listCate();
+    setCategory(data);
+  }
+  getCategorys();
+},[]);
   const { register, handleSubmit, formState: { errors } } = useForm<TypeInputs>();
   const navigate = useNavigate();
   const onSubmit: SubmitHandler<TypeInputs> = data => {
     props.onAdd(data);
-    navigate("/admin/products")
+    // navigate("/admin/products")
   }
   return (
     <div>
@@ -49,9 +64,15 @@ const Add_pro = (props: ProductAddProps) => {
               Danh mục sản phẩm
             </label>
             <div className="mt-1">
-              <select name="day" id="category" className="focus:ring-indigo-500 focus:border-indigo-800 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300">
+              <select {...register('category')} id="category" className="focus:ring-indigo-500 focus:border-indigo-800 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300">
                 <option>-- Chọn danh mục sản phẩm --</option>
-                <option > cate</option>
+                {categorys.map((cate)=>{
+                  return(
+                    <option value={cate._id}>{cate.name}</option >
+                  )
+                 
+                })}
+                
 
 
               </select>

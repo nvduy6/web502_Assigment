@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom'
 import Category from '../Category'
 import Footer from '../../components/Footer';
 import Header from '../../components/Header'
+import Selider from '../../components/selider';
 type Props ={}
 const WebsiteLayout = (props:Props) => {
   return (
@@ -12,7 +13,9 @@ const WebsiteLayout = (props:Props) => {
   </header>
   {/* banner */}
   <section>
-    <img style={{width: '100%', height: 370}} src="https://tse3.explicit.bing.net/th?id=OIP.kZSOUPzxEAMn6seSzjjmKwHaCU&pid=Api&P=0&w=465&h=145" alt="" />
+<img style={{width: '100%', height: 370}} src="https://tse3.explicit.bing.net/th?id=OIP.kZSOUPzxEAMn6seSzjjmKwHaCU&pid=Api&P=0&w=465&h=145" alt="" />
+   
+    {/* <Selider/> */}
   </section>
   <div className="d-grid gap-4" style={{gridTemplateColumns: '1fr 4fr'}}>
     {/* category */}

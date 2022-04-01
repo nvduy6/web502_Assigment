@@ -25,7 +25,7 @@ const Signin = () => {
     <div className="modal-content rounded-5 shadow">
       <div className="modal-header p-5 pb-4 border-bottom-0">
         {/* <h5 class="modal-title">Modal title</h5> */}
-        <h2 className="fw-bold mb-0">Sign up for free</h2>
+        <h2 className="fw-bold mb-0">Sign in for free</h2>
         <Link to='/'> <button  type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" /></Link>
        
       </div>
