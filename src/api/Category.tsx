@@ -13,12 +13,17 @@ export const removeCate = (id:number)=>{
     const url = `/categorys/${id}`;
     return instance.delete(url)
 }
-export const getcate =(id:string|undefined)=>{
-    const url = `/categorys/${id}`;
+export const getcate =(_id:string|undefined)=>{
+    const url = `/category/${_id}`;
+    return instance.get(url)
+    ;
+}
+export const get =(slug:string|undefined)=>{
+    const url = `/category/${slug}`;
     return instance.get(url)
     ;
 }
 export const updatecate = (Category:ICategory)=>{
-    const url = `/categorys/${Category.id}`;
+    const url = `/categorys/${Category._id}`;
     return instance.put(url,Category)
 }

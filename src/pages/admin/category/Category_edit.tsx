@@ -1,13 +1,16 @@
 import React, { useEffect } from 'react'
 import { useForm ,SubmitHandler} from 'react-hook-form'
-import { useNavigate, useParams } from "react-router-dom"
+import { useNavigate, useParams,Link } from "react-router-dom"
 import { getcate } from '../../../api/Category'
 import { ICategory } from '../../../type/Category'
+import { Table,Space,Button, Breadcrumb } from 'antd';
 type Category_editProps={
     onUpdateCate:(categorys:ICategory)=>void;
 }
 type TypeInputs = {
-    name:String
+    name:string
+    slug:string
+
 }
 
 const Category_edit = (props:Category_editProps) => {
@@ -22,11 +25,17 @@ const Category_edit = (props:Category_editProps) => {
         getCategory();
     },[])
     const onSubmit:SubmitHandler<TypeInputs>=data=>{
+      console.log(id)
         props.onUpdateCate(data)
         navigate("/admin/categorys")
     }
     return (
     <div>
+         <Breadcrumb style={{ margin: '16px 0' }}>
+          <Breadcrumb.Item><Link to='/admin/dashboard'>Page</Link></Breadcrumb.Item>
+          <Breadcrumb.Item><Link to="/admin/categorys">Categorys</Link></Breadcrumb.Item>
+          <Breadcrumb.Item>Edit</Breadcrumb.Item>
+        </Breadcrumb>
 <form onSubmit={handleSubmit(onSubmit)}>
   <div>
   <div className="mb-3">

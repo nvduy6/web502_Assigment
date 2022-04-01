@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { list } from '../api/Product';
 import { IProduct } from '../type/Product'
-import { Table,Space,Button, Breadcrumb } from 'antd';
+import { Breadcrumb } from 'antd';
 import { Link } from 'react-router-dom';
 import Blog from './Blog';
 type Props = {
@@ -35,7 +35,10 @@ const Home = (props: Props) => {
                         <button type="button" className="btn btn-sm btn-outline-secondary">عرض</button>
                         <button type="button" className="btn btn-sm btn-outline-secondary">تعديل</button>
                       </div>
-                      <small className="text-muted">{item.price}</small>
+                      <small className="text-muted">
+                        <Link to={`/producst/detail/${item._id}`}>
+                        {item.price}
+                        </Link></small>
                     </div>
                   </div>
                 </div>

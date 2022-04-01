@@ -1,24 +1,29 @@
 import React from 'react'
 import {SubmitHandler, useForm} from 'react-hook-form';
 import {Link, useNavigate} from 'react-router-dom';
+import { Table,Space,Button, Breadcrumb } from 'antd';
 type CategoryAddProps={
     name:string
-    onAdd:(categorys:TypeInputs)=>void;
+    onAddcate:(categorys:TypeInputs)=>void;
 }
 type TypeInputs={
     name:string,
-    price:number
+  slug:string,
 }
 const Category_add = (props:CategoryAddProps) => {
 const {register,handleSubmit,formState:{errors}} = useForm<TypeInputs>();
 const navigate = useNavigate();
 const onSubmit:SubmitHandler<TypeInputs>=data=>{
-    props.onAdd(data);
-    navigate("/admin/category");
+    props.onAddcate(data);
+    // navigate("/admin/categorys");
 }
   return (
     <div>
-      <button><Link to="/admin/categorys">Quay lai</Link></button>
+       <Breadcrumb style={{ margin: '16px 0' }}>
+          <Breadcrumb.Item><Link to='/admin/dashboard'>Page</Link></Breadcrumb.Item>
+          <Breadcrumb.Item><Link to="/admin/categorys">Categorys</Link></Breadcrumb.Item>
+          <Breadcrumb.Item>Add</Breadcrumb.Item>
+        </Breadcrumb>
 <form onSubmit={handleSubmit(onSubmit)}>
   <div>
   <div className="mb-3">

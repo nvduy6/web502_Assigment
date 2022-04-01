@@ -8,8 +8,9 @@ type Edit_proProps={
     onUpdate:(product:IProduct)=>void;
 };
 type TypeInputs={
-    name:String,
-    price:Number,
+    name:string,
+    price:number,
+    image:string,
 }
 const Edit_pro = (props:Edit_proProps) => {
 const {register,handleSubmit,formState:{errors},reset}=useForm<TypeInputs>();
@@ -23,7 +24,7 @@ useEffect(()=>{
     getProduct();
 },[])
 const onSubmit:SubmitHandler<TypeInputs>= data=>{
-    console.log(data)
+    // console.log(data)
     props.onUpdate(data);
     navigate("/admin/products")
 }

@@ -8,7 +8,8 @@ type ProductAddProps={
 }
 type TypeInputs = {
   name:string,
-  price:number
+  price:number,
+  image:string
 }
 const Add_pro = (props:ProductAddProps) => {
   const {register,handleSubmit,formState:{errors}}= useForm<TypeInputs>();
@@ -37,6 +38,10 @@ const onSubmit:SubmitHandler<TypeInputs>=data=>{
   <div className="mb-3">
     <label htmlFor="exampleInputPassword1" className="form-label">Price</label>
     <input type="number" className="form-control" {...register('price')} />
+  </div>
+  <div className="mb-3">
+    <label htmlFor="exampleInputPassword1" className="form-label">Image</label>
+    <input type="text" className="form-control" {...register('image')} />
   </div>
  
   <button type="submit" className="btn btn-primary">Add</button>

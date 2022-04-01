@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom';
 import { listCate } from '../api/Category';
 import { ICategory } from '../type/Category'
 type Props = {
@@ -24,9 +25,9 @@ const Category = (props: Props) => {
 
        {category.map((item,index)=> {
          return <li key={index}>
-         <a href="#" className="nav-link text-white">
+         <Link to={`/categorys/${item.slug}`} className="nav-link text-white">
            <svg className="bi me-2" width={16} height={16}><use xlinkHref="#grid" /></svg> {item.name}
-         </a>
+         </Link>
        </li>
        })}
 

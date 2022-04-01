@@ -23,6 +23,10 @@ import PrivateRouter from './components/PrivateRouter';
 import List_post from './pages/admin/posts/List_post';
 import Add_post from './pages/admin/posts/Add_post';
 import Edit_post from './pages/admin/posts/Edit_post';
+import { notification } from 'antd';
+import DetailProduct from './pages/DetailProduct';
+import DetailCate from './pages/DetailCate';
+
 
 function App() {
   const [count, setCount] = useState(0)
@@ -44,13 +48,19 @@ function App() {
   // update
   const onHandlerUpdate = async (product: IProduct) => {
     const { data } = await update(product);
-    setProducts(products.map(item => item.id == data.id ? data : item));
+    setProducts(products.map(item => item._id == data.id ? data : item));
   }
   const removeItem = (id: number) => {
+    const openNotification = () => {
+      notification.open({
+        message: 'Xóa Thành công',
+      });
+    };
     // call api
+    openNotification()
     remove(id)
     // reRender
-    setProducts(products.filter(item => item.id !== id))
+    setProducts(products.filter(item => item._id !== id))
   }
   // ---------------Category-------------------
   useEffect(() => {
@@ -63,7 +73,7 @@ function App() {
   // delete-----------------------------------
   const removecate = (id: number) => {
     removeCate(id)
-    setCategorys(categorys.filter(item => item.id !== id))
+    setCategorys(categorys.filter(item => item._id !== id))
   }
   // add------------------------------------------
   const onHandlerCate = async (category: ICategory) => {
@@ -72,7 +82,7 @@ function App() {
   }
   const onHandeleUpdateCate = async (category: ICategory) => {
     const { data } = await updatecate(category);
-    setCategorys(categorys.map(item => item.id == data.id ? data : item));
+    setCategorys(categorys.map(item => item._id == data.id ? data : item));
   }
 
   return (
@@ -81,9 +91,12 @@ function App() {
         <Routes>
           <Route path='/' element={<WebsiteLayout />}>
             <Route index element={<Home />} />
+            <Route path='producst/detail/:id' element={<DetailProduct/>}/>
+            <Route path='categorys/:slug' element={<DetailCate/>}/>
             <Route path='product' element={<h1>Hien thi san pham 123</h1>} />
             <Route path='about' element={<h1>About</h1>} />
           </Route>
+          
 
           <Route path="admin" element={<AdminLayout />}>
             <Route index element={<Navigate to="dashboard" />} />
@@ -93,9 +106,9 @@ function App() {
               <Route path='add' element={<Add_pro name='duy' onAdd={onHandlerAdd} />} />
               <Route path=":id/edit" element={<Edit_pro onUpdate={onHandlerUpdate} />} />
             </Route>
-            <Route path='category'>
+            <Route path='categorys'>
               <Route index element={<Category_list categorys={categorys} onRemoveCate={removecate} />} />
-              <Route path='add' element={<Category_add name='duy' onAdd={onHandlerCate} />} />
+              <Route path='add' element={<Category_add name='duy' onAddcate={onHandlerCate} />} />
               <Route path=':id/edit' element={<Category_edit onUpdateCate={onHandeleUpdateCate} />} />
             </Route>
             <Route path="posts">
