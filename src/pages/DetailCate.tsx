@@ -13,14 +13,20 @@ const DetailCate = (post:Props) => {
     const {slug} = useParams();
     useEffect(()=>{
         const getCategory = async ()=>{
-            const {data}= await getcate(slug);
-            setCategory(data)
+            const {data: {products}}= await getcate(slug);
+            setCategory(products)
         }
         getCategory();
     },[])
     console.log(slug);
   return (
-    <div></div>
+    <div>
+      {category.map((item)=> {
+        return <div>
+          {item.name}
+        </div>
+      })}
+    </div>
   )
 }
 

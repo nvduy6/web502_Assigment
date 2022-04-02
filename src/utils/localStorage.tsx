@@ -7,3 +7,9 @@ export const isAuthenticate = ()=>{
     if(!localStorage.getItem('user'))return;
     return JSON.parse(localStorage.getItem('user')as string)
 }
+export const useName = ()=>{
+    const results = JSON.parse(localStorage.getItem('user')as string);
+    if(results){
+        return results.user.name
+    }
+}

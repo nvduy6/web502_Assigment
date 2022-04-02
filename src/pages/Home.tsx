@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { list } from '../api/Product';
 import { IProduct } from '../type/Product'
-import { Breadcrumb } from 'antd';
+import { Breadcrumb, Rate } from 'antd';
 import { Link } from 'react-router-dom';
 import Blog from './Blog';
+const desc = ['terrible', 'bad', 'normal', 'good', 'wonderful'];
 type Props = {
 }
 const Home = (props: Props) => {
@@ -21,45 +22,65 @@ const Home = (props: Props) => {
         <Breadcrumb style={{ margin: '8px 8px' }}>
           <Breadcrumb.Item><Link to='/admin/dashboard'>Home</Link></Breadcrumb.Item>
         </Breadcrumb>
-        <div className="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-3 px-2">
+
+        <div className="row">
           {products.map((item, index) => {
             return (
               <div className="col">
-
-                <div className="card shadow-sm" key={index}>
+                <div className="owl-item" style={{ width: 283 }}>
+                  <div className="col-md-12 col-sm-12 col-xs-12 list-item box-blogs ">
                   <Link to={`/producst/detail/${item._id}`}>
-                    <img src="https://tse2.mm.bing.net/th?id=OIP.cqGiNayt3c9N7MY1vAE6sQHaHa&pid=Api&P=0&w=177&h=177" alt="" />
-                    {/* <svg className="bd-placeholder-img card-img-top" width="100%" height={225} xmlns="https://tse2.mm.bing.net/th?id=OIP.cqGiNayt3c9N7MY1vAE6sQHaHa&pid=Api&P=0&w=177&h=177" role="img" aria-label="Placeholder: صورة مصغرة" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef" dy=".3em">صورة مصغرة</text></svg> */}
-                    <div className="card-body">
-                      <p className="card-text">{item.name}</p>
-                      <div className="d-flex justify-content-between align-items-center">
-                        <div className="btn-group">
-                          <button type="button" className="btn btn-sm btn-outline-secondary">عرض</button>
-                          <button type="button" className="btn btn-sm btn-outline-secondary">تعديل</button>
+                    <div className="item-blogs clearfix">
+                      <div className="img-blogs">
+                        <img style={{ width: 283 }} src="https://fs-07.web4s.vn/uploads/plugin/product_items/32/qu-n-ao-th-thao-nam-alh17-09-bo-do-nam-aristino-al03-tim-than-large.jpg" className="img-item-product" />
+                      </div>
+                      <div className="info">
+                        <h4 className="title-product">
+                            {item.name}
+                        </h4>
+                        <div className="price price-inline">
+                          <p className="price-well">
+                            {item.price}
+                          </p>
                         </div>
-                        <small className="text-muted">
-
-                          {item.price}
-                        </small>
+                        <div className="show-list">
+                          <a href="javascript:void(0)" className="btn btn-main-2 btn-black-2 btn-shop-cart" item-id={32} product-id={32} status-store={0}>Mua hàng</a>
+                        </div>
+                        <div className="content-attr hidden">
+                        </div>
                       </div>
                     </div>
                   </Link>
+                  </div>
                 </div>
-
               </div>
             )
-
           })}
 
         </div>
+
+        <div className="container">
+          <div className="row">
+            <div className="col">
+              1 of 2
+            </div>
+            <div className="col">
+              2 of 2
+            </div>
+          </div>
+        </div>
+        <div className="block-news box-product ">
+          <h2 className="title-block-product text-center"> Tin tức &amp; Blog<br /> <i className="icon-title-1" />
+          </h2>
+          <div className="container">
+            <Blog />
+          </div>
+
+        </div>
+
       </div>
-      {/* bài viết */}
-      <div className="container marketing">
-        <Blog />
-        {/* /.col-lg-4 */}
       </div>
-    </div>
-  )
+      )
 }
 
-export default Home
+      export default Home

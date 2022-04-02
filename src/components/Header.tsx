@@ -1,6 +1,10 @@
 import React from 'react'
 import { NavLink, Link } from 'react-router-dom'
+import { useName } from '../utils/localStorage'
 const Header = () => {
+  const handlerRemove =()=>{
+    localStorage.removeItem('user')
+  }
   return (
     <div className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
       <a href="/" className="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
@@ -12,6 +16,7 @@ const Header = () => {
         <li><NavLink to="/about" className="nav-link px-2 link-dark">Customers</NavLink></li>
         <li><NavLink to="/signup" className="nav-link px-2 link-dark">Products</NavLink></li>
       </ul>
+      <h1>Xin chao: {useName()}</h1>
     {/* {localStorage.getItem('user')} */}
       <form className="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
         <input type="search" className="form-control" placeholder="Search..." aria-label="Search" />
@@ -26,7 +31,11 @@ const Header = () => {
           <button type="button" className="btn btn-primary secondary">
             Sign-up
           </button>
+          
         </Link>
+        <button type="button" className="btn btn-primary secondary" onClick={handlerRemove}>
+            dawng xuat
+          </button>
       </div>
 
       {/* <div className="dropdown text-end">

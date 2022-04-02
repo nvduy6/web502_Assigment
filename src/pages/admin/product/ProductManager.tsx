@@ -47,7 +47,11 @@ const ProductManager = (props: Props) => {
                 <td>
                   <img src={item.image} alt="" width={50} />
                 </td>
-                <td>{item.category}</td>
+                {/* <td>{item.description}</td> */}
+                <td>{item.category}
+                  getone()
+
+                </td>
                 <td>
                   <button><Link to={`/admin/products/${item._id}/edit`}>Update</Link></button>
                   <button onClick={() => props.onRemove(item._id)}>Delete</button>

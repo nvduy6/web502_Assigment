@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { read } from '../api/Product';
 import { IProduct } from '../type/Product'
+import { Breadcrumb, Rate } from 'antd';
 type Props = {
 
 }
@@ -20,7 +21,11 @@ const DetailProduct = (props: Props) => {
 
   return (
     <div>
-
+ <Breadcrumb style={{ margin: '8px 8px' }}>
+          <Breadcrumb.Item><Link to="/">Trang chủ</Link></Breadcrumb.Item>
+          <Breadcrumb.Item>Sản phẩm</Breadcrumb.Item>
+          <Breadcrumb.Item>{products.name}</Breadcrumb.Item>
+        </Breadcrumb>
 <div className="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
  
   <div className="col-auto d-lg-block">
@@ -28,10 +33,11 @@ const DetailProduct = (props: Props) => {
   </div>
   <div className="col p-4 d-flex flex-column position-static">
     <strong className="d-inline-block mb-2 text-primary">World</strong>
-    <h3 className="mb-0">{products.name}</h3>
+    <h2 className="mb-0 red">{products.name}</h2>
     <div className="mb-1 text-muted">Gia:{products.price}</div>
     <p className="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-    <a href="#" className="stretched-link">Continue reading</a>
+    <a href="#" className="stretched-link"><button type="button" className="btn btn-success">Them vào giỏ hàng</button>
+</a>
   </div>
 </div>
 

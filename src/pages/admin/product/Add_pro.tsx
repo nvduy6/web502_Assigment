@@ -5,32 +5,47 @@ import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react';
 import { ICategory } from '../../../type/Category';
 import { listCate } from '../../../api/Category';
+import axios from 'axios';
 type ProductAddProps = {
   name: string,
   onAdd: (product: TypeInputs) => void;
 }
-type Props ={
+type Props = {
 
 }
 type TypeInputs = {
   name: string,
   price: number,
+  // description: string,
   image: string,
-  category:string
+  category: string
 }
 const Add_pro = (props: ProductAddProps) => {
-const [categorys,setCategory] = useState<ICategory[]>([]);
-useEffect(()=>{
-  const getCategorys = async ()=>{
-    const {data} = await listCate();
-    setCategory(data);
-  }
-  getCategorys();
-},[]);
+  const [categorys, setCategory] = useState<ICategory[]>([]);
+  useEffect(() => {
+    const getCategorys = async () => {
+      const { data } = await listCate();
+      setCategory(data);
+    }
+    getCategorys();
+  }, []);
   const { register, handleSubmit, formState: { errors } } = useForm<TypeInputs>();
   const navigate = useNavigate();
-  const onSubmit: SubmitHandler<TypeInputs> = data => {
+  const onSubmit: SubmitHandler<TypeInputs> =async data => {
+    const CLOUDINARY_API = "https://api.cloudinary.com/v1_1/duynv/image/upload";
+        const CLOUDINARY_PRESET = "okwdgnez";
+        const file = data.image[0];
+        const formdata = new FormData();
+        formdata.append("file",file);
+        formdata.append("upload_preset",CLOUDINARY_PRESET);
+        const response = await  axios.post(CLOUDINARY_API,formdata,{
+          headers: {
+                           "Content-Type": "application/form-data"
+          },
+        });
+        data.image=response.data.url;
     props.onAdd(data);
+    
     // navigate("/admin/products")
   }
   return (
@@ -56,8 +71,15 @@ useEffect(()=>{
         </div>
         <div className="mb-3">
           <label htmlFor="exampleInputPassword1" className="form-label">Image</label>
-          <input type="text" className="form-control" {...register('image')} />
+          <input type="file" className="form-control" {...register('image')} />
         </div>
+        {/* <div className="form-floating">
+          <label >description</label>
+          <textarea className="form-control" placeholder="Leave a comment here" id="floatingTextarea2"{...register('description')} >
+
+          </textarea>
+
+        </div> */}
         <div>
           <div>
             <label className="block text-sm font-medium text-gray-700">
@@ -66,20 +88,20 @@ useEffect(()=>{
             <div className="mt-1">
               <select {...register('category')} id="category" className="focus:ring-indigo-500 focus:border-indigo-800 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300">
                 <option>-- Chọn danh mục sản phẩm --</option>
-                {categorys.map((cate)=>{
-                  return(
+                {categorys.map((cate) => {
+                  return (
                     <option value={cate._id}>{cate.name}</option >
                   )
-                 
+
                 })}
-                
+
 
 
               </select>
             </div>
           </div >
-          </div >
-          <button type="submit" className="btn btn-primary">Add</button>
+        </div >
+        <button type="submit" className="btn btn-primary">Add</button>
       </form >
     </div >
   )
