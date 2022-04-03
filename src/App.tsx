@@ -30,6 +30,8 @@ import { IpSlider } from './type/Slider';
 import { listSlider,addSlider } from './api/Slider';
 import List_slider from './pages/admin/slider/List_slider';
 import Add_slider from './pages/admin/slider/Add_slider';
+import { IPost } from './type/Post';
+import { addPost, listpost } from './api/Post';
 
 
 function App() {
@@ -37,6 +39,7 @@ function App() {
   const [products, setProducts] = useState<IProduct[]>([]);
   const [categorys, setCategorys] = useState<ICategory[]>([]);
   const [sliiders, setSliders] = useState<IpSlider[]>([]);
+  const [posts,setPosts] = useState<IPost[]>([]);
   // --------------products-------------------
   useEffect(() => {
     const getProducts = async () => {
@@ -101,9 +104,22 @@ function App() {
     removeSlider(id);
     setSliders(sliiders.filter(item => item._id!== id))
   }
+ 
   const onHandlerSlider = async (slider: IpSlider) => {
     const { data } = await addSlider(slider);
     setCategorys([...sliiders, data])
+  }
+  // --------------------post-------------------
+  useEffect(()=>{
+    const getPost = async () =>{
+      const {data} = await listpost();
+      setPosts(data);
+    }
+    getPost();
+  },[]);
+  const onHandlerPost = async (post:IPost)=>{
+    const {data} = await addPost(post);
+    setPosts([...posts,data])
   }
   return (
     <div className="App">
@@ -133,7 +149,7 @@ function App() {
             </Route>
             <Route path="posts">
               <Route index element={<List_post />} />
-              <Route path='add' element={<Add_post />} />
+              <Route path='add' element={<Add_post onAddPost={onHandlerPost}/>} />
               <Route path=':id/edit' element={<Edit_post />} />
             </Route>
             <Route path='sliders'>

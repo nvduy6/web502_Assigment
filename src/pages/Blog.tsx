@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { list } from '../api/Post';
+import { listpost } from '../api/Post';
 import { IPost } from '../type/Post'
 type Props = {
 
@@ -8,7 +8,7 @@ const Blog = (props: Props) => {
     const [posts, setPosts] = useState<IPost[]>([]);
     useEffect(() => {
         const getPosts = async () => {
-            const { data } = await list();
+            const { data } = await listpost();
             setPosts(data);
         }
         getPosts();

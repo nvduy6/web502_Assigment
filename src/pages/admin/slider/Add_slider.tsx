@@ -28,7 +28,7 @@ const onSubmit:SubmitHandler<InputsType>=async data=>{
         });
         data.name=response.data.url;
     props.onAddslider(data);
-    navigate('/sliders')
+    navigate('/admin/sliders')
 }
     return (
         <div>
