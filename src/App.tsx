@@ -148,7 +148,7 @@ function App() {
               <Route path=':id/edit' element={<Category_edit onUpdateCate={onHandeleUpdateCate} />} />
             </Route>
             <Route path="posts">
-              <Route index element={<List_post />} />
+              <Route index element={<List_post post={posts} />} />
               <Route path='add' element={<Add_post onAddPost={onHandlerPost}/>} />
               <Route path=':id/edit' element={<Edit_post />} />
             </Route>

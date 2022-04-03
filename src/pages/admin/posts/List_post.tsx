@@ -1,7 +1,12 @@
 import React from 'react'
 import { Table, Space, Button, Breadcrumb } from 'antd';
 import { Link } from 'react-router-dom'
-const List_post = () => {
+import { IPost } from '../../../type/Post';
+type Props = {
+  post: IPost[];
+  // onRemovePost:(id:number)=>void;
+}
+const List_post = (props: Props) => {
   return (
     <div>
       <Breadcrumb style={{ margin: '16px 0' }}>
@@ -19,11 +24,12 @@ const List_post = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
+          {props.post.map((item, index) => {
+            return (
+              <tr key={index}>
+            <th scope="row">{index++}</th>
+            <td>{item.title}</td>
+            <td>{item.desc}</td>
             <td>
               <button >
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-trash3" viewBox="0 0 16 16">
@@ -38,17 +44,8 @@ const List_post = () => {
             </td>
 
           </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td colSpan={2}>Larry the Bird</td>
-            <td>@twitter</td>
-          </tr>
+            )
+          })}
         </tbody>
       </table>
 

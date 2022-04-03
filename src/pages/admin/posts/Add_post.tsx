@@ -23,16 +23,10 @@ navigate("/admin/post")
     </div>
     <div className="mb-3">
       <label htmlFor="exampleInputPassword1" className="form-label">Price</label>
-      <input type="text" className="form-control" {...register('desc')} />
+     <textarea cols={30} rows={10} defaultValue={""} {...register('desc')} />
+
     </div>
     
-    {/* <div className="form-floating">
-      <label >description</label>
-      <textarea className="form-control" placeholder="Leave a comment here" id="floatingTextarea2"{...register('description')} >
-
-      </textarea>
-
-    </div> */}
     
     <button type="submit" className="btn btn-primary">Add</button>
   </form >

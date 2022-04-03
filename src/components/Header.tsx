@@ -2,7 +2,7 @@ import React from 'react'
 import { NavLink, Link } from 'react-router-dom'
 import { useName } from '../utils/localStorage'
 const Header = () => {
-  const handlerRemove =()=>{
+  const handlerRemove = () => {
     localStorage.removeItem('user')
   }
   return (
@@ -16,12 +16,13 @@ const Header = () => {
         <li><NavLink to="/about" className="nav-link px-2 link-dark">Customers</NavLink></li>
         <li><NavLink to="/signup" className="nav-link px-2 link-dark">Products</NavLink></li>
       </ul>
-      <h1>Xin chao: {useName()}</h1>
-    {/* {localStorage.getItem('user')} */}
+      {/* <h1>Xin chao: {useName()}</h1> */}
+
       <form className="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
         <input type="search" className="form-control" placeholder="Search..." aria-label="Search" />
       </form>
-      <div className="text-end">
+      {localStorage.getItem('user') ?`(${useName()} button type="button" className="btn btn-primary secondary" onClick={handlerRemove}> dawng xuat</button>)` :(
+        <div className="text-end">
         <Link to="/signin" className="  me-2">
           <button type="button" className='btn btn-light text-dark' >
             Login
@@ -31,12 +32,13 @@ const Header = () => {
           <button type="button" className="btn btn-primary secondary">
             Sign-up
           </button>
-          
+
         </Link>
-        <button type="button" className="btn btn-primary secondary" onClick={handlerRemove}>
-            dawng xuat
-          </button>
+
       </div>
+      )
+     
+          }
 
       {/* <div className="dropdown text-end">
       <a href="#" className="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
