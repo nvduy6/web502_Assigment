@@ -29,7 +29,7 @@ const Home = (props: Props) => {
               <div className="col">
                 <div className="owl-item" style={{ width: 283 }}>
                   <div className="col-md-12 col-sm-12 col-xs-12 list-item box-blogs ">
-                  <Link to={`/producst/detail/${item._id}`}>
+                  <Link className='text-decoration-none' to={`/producst/detail/${item._id}`}>
                     <div className="item-blogs clearfix">
                       <div className="img-blogs">
                         <img style={{ width: 283 }} src={item.image} className="img-item-product" />
@@ -39,13 +39,13 @@ const Home = (props: Props) => {
                             {item.name}
                         </h4>
                         <div className="price price-inline">
-                          <p className="price-well">
-                            {item.price}
+                          <p className="price-well text-danger fs-4">
+                           Giá: {item.price} đ
                           </p>
                         </div>
-                        <div className="show-list">
+                        {/* <div className="show-list">
                           <a href="javascript:void(0)" className="btn btn-main-2 btn-black-2 btn-shop-cart" item-id={32} product-id={32} status-store={0}>Mua hàng</a>
-                        </div>
+                        </div> */}
                         <div className="content-attr hidden">
                         </div>
                       </div>

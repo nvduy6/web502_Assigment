@@ -26,8 +26,8 @@ const WebsiteLayout = (props: Props) => {
         <main className="container">
           <div>
             <div>
-              <h2 className="title-block-product text-center">Bộ sưu tập</h2>
-              <div className="slogan text-center">Bộ sưu tập thu đông nổi bật với các họa tiết tinh tế lại có mức giá rẻ.</div>
+              <h2 className="title-block-product text-center fs-2">Bộ sưu tập</h2>
+              <div className="slogan text-center fs-4 ">Bộ sưu tập thu đông nổi bật với các họa tiết tinh tế lại có mức giá rẻ.</div>
             </div>
             <div className="row" data-masonry="{&quot;percentPosition&quot;: true }" style={{ position: 'relative', height: 410, marginTop: 20 }}>
               <div>
@@ -79,11 +79,11 @@ const WebsiteLayout = (props: Props) => {
           </div>
 
           <div className="box-product  tabs-block  box-product-style2 box-st">
-            <h2 className="title-block-product text-center">
+            <h2 className="title-block-product text-center fs-2">
               Tất cả sản phẩm<br />
               <i className="icon-title-1" />
             </h2>
-            <p className="slogan text-center">Tất cả sản phẩm của chúng tôi là những mẫu mới nhất được nhiều khách hàng quan tâm</p>
+            <p className="slogan text-center fs-4">Tất cả sản phẩm của chúng tôi là những mẫu mới nhất được nhiều khách hàng quan tâm</p>
             <div>
               <Category />
             </div>

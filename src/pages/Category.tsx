@@ -19,8 +19,8 @@ const Category = (props: Props) => {
     <ul className="nav nav-pills d-flex justify-content-center py-3">
       {category.map((item, index) => {
         return <li className="nav-item" key={index}>
-          <Link to={`/categorys/${item.slug}`} className="nav-link ">
-          <svg className="bi me-2" width={16} height={16}><use xlinkHref="#grid" /></svg> {item.name}
+          <Link to={`/categorys/${item.slug}`} className="nav-link "><button style={{width:'80px' ,height:'40px'}} type="button" className="btn btn-light "> {item.name}</button>
+          {/* <svg className="bi me-2" width={16} height={16}><use xlinkHref="#grid" /></svg> */}
         </Link>
         </li>
       })}
