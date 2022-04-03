@@ -45,6 +45,9 @@ const AdminLayout = (props: Props) => {
         <Menu.Item key="4" icon={<DesktopOutlined />}>
           <Link to={"/admin/posts"}>Blog</Link>
         </Menu.Item>
+        <Menu.Item key="4" icon={<DesktopOutlined />}>
+          <Link to={"/admin/sliders"}>Slider</Link>
+        </Menu.Item>
         <SubMenu key="sub1" icon={<UserOutlined />} title="User">
           <Menu.Item key="5">Tom</Menu.Item>
           <Menu.Item key="6">Bill</Menu.Item>

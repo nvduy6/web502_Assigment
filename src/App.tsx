@@ -27,7 +27,7 @@ import { notification, Slider } from 'antd';
 import DetailProduct from './pages/DetailProduct';
 import DetailCate from './pages/DetailCate';
 import { IpSlider } from './type/Slider';
-import { listSlider,addSlider } from './api/Slider';
+import { listSlider,addSlider, removeSlider } from './api/Slider';
 import List_slider from './pages/admin/slider/List_slider';
 import Add_slider from './pages/admin/slider/Add_slider';
 import { IPost } from './type/Post';
@@ -100,8 +100,8 @@ function App() {
     }
     getSlider();
   }, []);
-  const removeSlider = (id: number) => {
-    removeSlider(id);
+  const removeSliders = (id: number) => {
+  removeSlider(id)
     setSliders(sliiders.filter(item => item._id!== id))
   }
  
@@ -139,7 +139,7 @@ function App() {
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="products">
               <Route index element={<ProductManager products={products} onRemove={removeItem} />} />
-              <Route path='add' element={<Add_pro name='duy' onAdd={onHandlerAdd} />} />
+              <Route path='add' element={<Add_pro onAdd={onHandlerAdd} />} />
               <Route path=":id/edit" element={<Edit_pro onUpdate={onHandlerUpdate} />} />
             </Route>
             <Route path='categorys'>
@@ -153,7 +153,7 @@ function App() {
               <Route path=':id/edit' element={<Edit_post />} />
             </Route>
             <Route path='sliders'>
-              <Route index element={<List_slider sliders={sliiders} onRemoveSlider={removeSlider}/>} />
+              <Route index element={<List_slider sliders={sliiders} onRemoveSlider={removeSliders}/>} />
               <Route path='add' element={<Add_slider name='duy' onAddslider={onHandlerSlider}/>}/>
             </Route>
           </Route>

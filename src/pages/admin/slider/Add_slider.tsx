@@ -1,8 +1,8 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import{SubmitHandler,useForm} from "react-hook-form"
-import { useNavigate } from 'react-router-dom'
-
+import { useNavigate,Link } from 'react-router-dom'
+import {Breadcrumb} from "antd"
 type Props = {
 name:string
 onAddslider:(sliders:InputsType)=>void;
@@ -32,11 +32,23 @@ const onSubmit:SubmitHandler<InputsType>=async data=>{
 }
     return (
         <div>
+            <div className="row">
+        <div className="col-11"> <Breadcrumb style={{ margin: '16px 0' }}>
+          <Breadcrumb.Item><Link to='/admin/dashboard'>Page</Link></Breadcrumb.Item>
+          <Breadcrumb.Item><Link to='/admin/sliders'>Slider</Link></Breadcrumb.Item>
+          <Breadcrumb.Item>Add</Breadcrumb.Item>
+        </Breadcrumb></div>
+        <div className="col-1">
+          <Link to="/admin/sliders/add">
+            <button type="button" className="btn btn-success">Add</button>
+          </Link>
+        </div>
+      </div>
             <form action="" onSubmit={handleSubmit(onSubmit)}>
-                <div>
-                    <label htmlFor="">Image</label>
-                    <input type="file" {...register('name')}/>
-                </div>
+            <div className="mb-3">
+          <label htmlFor="exampleInputPassword1" className="form-label">Image</label>
+          <input type="file" className="form-control" {...register('name')} />
+        </div>
                 <button>Them </button>
             </form>
 

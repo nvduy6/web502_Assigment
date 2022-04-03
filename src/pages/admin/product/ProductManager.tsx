@@ -44,6 +44,7 @@ const ProductManager = (props: Props) => {
                 <th scope="row">{index + 1}</th>
                 <td>{item.name}</td>
                 <td>{item.price}</td>
+                <td>{item.desc}</td>
                 <td>
                   <img src={item.image} alt="" width={50} />
                 </td>

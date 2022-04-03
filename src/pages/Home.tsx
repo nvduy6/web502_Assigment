@@ -32,7 +32,7 @@ const Home = (props: Props) => {
                   <Link to={`/producst/detail/${item._id}`}>
                     <div className="item-blogs clearfix">
                       <div className="img-blogs">
-                        <img style={{ width: 283 }} src="https://fs-07.web4s.vn/uploads/plugin/product_items/32/qu-n-ao-th-thao-nam-alh17-09-bo-do-nam-aristino-al03-tim-than-large.jpg" className="img-item-product" />
+                        <img style={{ width: 283 }} src={item.image} className="img-item-product" />
                       </div>
                       <div className="info">
                         <h4 className="title-product">

@@ -7,7 +7,8 @@ import { ICategory } from '../../../type/Category';
 import { listCate } from '../../../api/Category';
 import axios from 'axios';
 type ProductAddProps = {
-  name: string,
+  // name: string,
+  // desc: string,
   onAdd: (product: TypeInputs) => void;
 }
 type Props = {
@@ -16,7 +17,7 @@ type Props = {
 type TypeInputs = {
   name: string,
   price: number,
-  // description: string,
+  desc: string,
   image: string,
   category: string
 }
@@ -31,21 +32,21 @@ const Add_pro = (props: ProductAddProps) => {
   }, []);
   const { register, handleSubmit, formState: { errors } } = useForm<TypeInputs>();
   const navigate = useNavigate();
-  const onSubmit: SubmitHandler<TypeInputs> =async data => {
+  const onSubmit: SubmitHandler<TypeInputs> = async data => {
     const CLOUDINARY_API = "https://api.cloudinary.com/v1_1/duynv/image/upload";
-        const CLOUDINARY_PRESET = "okwdgnez";
-        const file = data.image[0];
-        const formdata = new FormData();
-        formdata.append("file",file);
-        formdata.append("upload_preset",CLOUDINARY_PRESET);
-        const response = await  axios.post(CLOUDINARY_API,formdata,{
-          headers: {
-                           "Content-Type": "application/form-data"
-          },
-        });
-        data.image=response.data.url;
+    const CLOUDINARY_PRESET = "okwdgnez";
+    const file = data.image[0];
+    const formdata = new FormData();
+    formdata.append("file", file);
+    formdata.append("upload_preset", CLOUDINARY_PRESET);
+    const response = await axios.post(CLOUDINARY_API, formdata, {
+      headers: {
+        "Content-Type": "application/form-data"
+      },
+    });
+    data.image = response.data.url;
     props.onAdd(data);
-    
+
     // navigate("/admin/products")
   }
   return (
@@ -72,6 +73,12 @@ const Add_pro = (props: ProductAddProps) => {
         <div className="mb-3">
           <label htmlFor="exampleInputPassword1" className="form-label">Image</label>
           <input type="file" className="form-control" {...register('image')} />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="exampleInputPassword1" className="form-label">Description</label>
+    <textarea cols={30} rows={5}{...register('desc')}/>
+
+
         </div>
         {/* <div className="form-floating">
           <label >description</label>

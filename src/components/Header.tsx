@@ -8,7 +8,7 @@ const Header = () => {
   return (
     <div className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
       <a href="/" className="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
-        <img style={{ width: 20, height: 25 }} src="https://logonoid.com/images/bootstrap-logo.png" />
+        <img style={{ width: 30, height: 30 }} src="https://fs-05.web4s.vn/uploads/plugin/setting/3/moros-logo-2-0.png" />
       </a>
       <ul className="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
         <li><NavLink to="/" className="nav-link px-2 link-secondary">Overview</NavLink></li>
