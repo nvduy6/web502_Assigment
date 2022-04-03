@@ -23,15 +23,20 @@ import PrivateRouter from './components/PrivateRouter';
 import List_post from './pages/admin/posts/List_post';
 import Add_post from './pages/admin/posts/Add_post';
 import Edit_post from './pages/admin/posts/Edit_post';
-import { notification } from 'antd';
+import { notification, Slider } from 'antd';
 import DetailProduct from './pages/DetailProduct';
 import DetailCate from './pages/DetailCate';
+import { IpSlider } from './type/Slider';
+import { listSlider,addSlider } from './api/Slider';
+import List_slider from './pages/admin/slider/List_slider';
+import Add_slider from './pages/admin/slider/Add_slider';
 
 
 function App() {
   const [count, setCount] = useState(0)
   const [products, setProducts] = useState<IProduct[]>([]);
-  const [categorys, setCategorys] = useState<ICategory[]>([])
+  const [categorys, setCategorys] = useState<ICategory[]>([]);
+  const [sliiders, setSliders] = useState<IpSlider[]>([]);
   // --------------products-------------------
   useEffect(() => {
     const getProducts = async () => {
@@ -84,19 +89,34 @@ function App() {
     const { data } = await updatecate(category);
     setCategorys(categorys.map(item => item._id == data.id ? data : item));
   }
-
+  // -------------------Slider------------------------
+  useEffect(() => {
+    const getSlider = async () => {
+      const { data } = await listSlider();
+      setSliders(data);
+    }
+    getSlider();
+  }, []);
+  const removeSlider = (id: number) => {
+    removeSlider(id);
+    setSliders(sliiders.filter(item => item._id!== id))
+  }
+  const onHandlerSlider = async (slider: IpSlider) => {
+    const { data } = await addSlider(slider);
+    setCategorys([...sliiders, data])
+  }
   return (
     <div className="App">
       <main>
         <Routes>
           <Route path='/' element={<WebsiteLayout />}>
             <Route index element={<Home />} />
-            <Route path='producst/detail/:id' element={<DetailProduct/>}/>
-            <Route path='categorys/:slug' element={<DetailCate/>}/>
+            <Route path='producst/detail/:id' element={<DetailProduct />} />
+            <Route path='categorys/:slug' element={<DetailCate />} />
             <Route path='product' element={<h1>Hien thi san pham 123</h1>} />
             <Route path='about' element={<h1>About</h1>} />
           </Route>
-          
+
 
           <Route path="admin" element={<AdminLayout />}>
             <Route index element={<Navigate to="dashboard" />} />
@@ -113,8 +133,12 @@ function App() {
             </Route>
             <Route path="posts">
               <Route index element={<List_post />} />
-              <Route path='add' element={<Add_post/>}/>
-              <Route path=':id/edit' element={<Edit_post/>}/>
+              <Route path='add' element={<Add_post />} />
+              <Route path=':id/edit' element={<Edit_post />} />
+            </Route>
+            <Route path='sliders'>
+              <Route index element={<List_slider sliders={sliiders} onRemoveSlider={removeSlider}/>} />
+              <Route path='add' element={<Add_slider name='duy' onAddslider={onHandlerSlider}/>}/>
             </Route>
           </Route>
           <Route path='/signup' element={<Signup />} />
