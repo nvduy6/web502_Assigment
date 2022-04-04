@@ -15,7 +15,7 @@ const {register,handleSubmit,formState:{errors}} = useForm<TypeInputs>();
 const navigate = useNavigate();
 const onSubmit:SubmitHandler<TypeInputs>=data=>{
     props.onAddcate(data);
-    // navigate("/admin/categorys");
+    navigate("/admin/categorys");
 }
   return (
     <div>

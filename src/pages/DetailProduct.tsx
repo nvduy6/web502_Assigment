@@ -3,6 +3,8 @@ import { Link, useParams } from 'react-router-dom';
 import { read } from '../api/Product';
 import { IProduct } from '../type/Product'
 import { Breadcrumb, Rate } from 'antd';
+import Item from 'antd/lib/list/Item';
+import Product from '../components/Product';
 type Props = {
 
 }
@@ -29,13 +31,13 @@ const DetailProduct = (props: Props) => {
 <div className="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
  
   <div className="col-auto d-lg-block">
-  <img style={{width: '100%', height: 370}} src="https://tse2.mm.bing.net/th?id=OIP.cqGiNayt3c9N7MY1vAE6sQHaHa&pid=Api&P=0&w=177&h=177" alt="" />
+  <img style={{width: '100%', height: 370}} src={products.image} alt="" />
   </div>
   <div className="col p-4 d-flex flex-column position-static">
     <strong className="d-inline-block mb-2 text-primary">World</strong>
     <h2 className="mb-0 red">{products.name}</h2>
     <div className="mb-1 text-muted">Gia:{products.price}</div>
-    <p className="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+    <p className="card-text mb-auto">{products.desc}</p>
     <a href="#" className="stretched-link"><button type="button" className="btn btn-success">Them vào giỏ hàng</button>
 </a>
   </div>

@@ -18,23 +18,23 @@ const Home = (props: Props) => {
   }, [])
   return (
     <div>
-      <div className="album py-2 bg-light">
-        <Breadcrumb style={{ margin: '8px 8px' }}>
+      <div className="my-3 p-3 rounded shadow-sm album bg-light">
+        {/* <Breadcrumb style={{ margin: '8px 8px' }}>
           <Breadcrumb.Item><Link to='/admin/dashboard'>Home</Link></Breadcrumb.Item>
-        </Breadcrumb>
+        </Breadcrumb> */}
 
-        <div className="row">
+        <div className=" row g-4 row-cols-2 row-cols-lg-4 ">
           {products.map((item, index) => {
             return (
-              <div className="col">
-                <div className="owl-item" style={{ width: 283 }}>
+              <div className="feature col">
+                <div className="owl-item" style={{ width: 293}}>
                   <div className="col-md-12 col-sm-12 col-xs-12 list-item box-blogs ">
                   <Link className='text-decoration-none' to={`/producst/detail/${item._id}`}>
                     <div className="item-blogs clearfix">
                       <div className="img-blogs">
-                        <img style={{ width: 283 }} src={item.image} className="img-item-product" />
+                        <img style={{ width: 293 }} src={item.image} className="img-item-product" />
                       </div>
-                      <div className="info">
+                      <div className="info text-center">
                         <h4 className="title-product">
                             {item.name}
                         </h4>
@@ -59,18 +59,19 @@ const Home = (props: Props) => {
 
         </div>
 
-        <div className="container">
-          <div className="row">
+        <div className="container mb-4">
+          <div className="row ">
             <div className="col">
-              1 of 2
+             <img style={{width:"100%"}} src="https://fashion01.web4s.vn/uploads/plugin/custom_img/2017-06-06/custom-banner-col-6.jpg" alt="" />
             </div>
             <div className="col">
-              2 of 2
+             <img style={{width:"100%"}} src="https://fashion01.web4s.vn/uploads/plugin/custom_img/2017-06-06/custom-banner-col-61.jpg" alt="" />
             </div>
           </div>
         </div>
         <div className="block-news box-product ">
-          <h2 className="title-block-product text-center"> Tin tức &amp; Blog<br /> <i className="icon-title-1" />
+        <hr className='m-auto text-muted' style={{width:"50% "}}/>
+          <h2 className="title-block-product text-center py-2"> Tin tức &amp; Blog<br /> <i className="icon-title-1" />
           </h2>
           <div className="container">
             <Blog />

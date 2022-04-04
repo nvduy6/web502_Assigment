@@ -47,7 +47,7 @@ const Add_pro = (props: ProductAddProps) => {
     data.image = response.data.url;
     props.onAdd(data);
 
-    // navigate("/admin/products")
+    navigate("/admin/products")
   }
   return (
     <div>
