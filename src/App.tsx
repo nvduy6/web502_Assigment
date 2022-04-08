@@ -138,14 +138,14 @@ function App() {
           </Route>
 
 
-          <Route path="admin" element={<AdminLayout />}>
+          <Route path="admin" element={<PrivateRouter><AdminLayout /></PrivateRouter> }>
             <Route index element={<Navigate to="dashboard" />} />
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="products">
-              <Route index element={<ProductManager products={products} onRemove={removeItem} />} />
-              <Route path="add" element={<Add_pro onAdd={onHandlerAdd} />} />
-              <Route path="add" element={<Add_pro onAdd={onHandlerAdd} />} />
-              {/* <Route path=":id/edit" element={<Edit_pro onUpdate={onHandlerUpdate} />} /> */}
+              <Route index element={<PrivateRouter><ProductManager products={products} onRemove={removeItem} /></PrivateRouter> } />
+              {/* <Route path="add" element={<Add_pro onAdd={onHandlerAdd} />} /> */}
+              <Route path="add/:userId" element={<Add_pro onAdd={onHandlerAdd} />} />
+              <Route path=":id/edit" element={<Edit_pro onUpdate={onHandlerUpdate} />} />
             </Route>
             <Route path='categorys'>
               <Route index element={<Category_list categorys={categorys} onRemoveCate={removecate} />} />

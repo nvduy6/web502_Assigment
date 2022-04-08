@@ -2,6 +2,9 @@ import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { IProduct } from '../../../type/Product'
 import { Breadcrumb } from 'antd';
+import { isAuthenticate } from '../../../utils/localStorage';
+const {user} = isAuthenticate();
+
 
 
 type Props = {
@@ -17,7 +20,7 @@ const ProductManager = (props: Props) => {
           <Breadcrumb.Item>Product</Breadcrumb.Item>
         </Breadcrumb></div>
         <div className="col-1">
-          <Link to="/admin/products/add">
+          <Link to={`/admin/products/add/${user._id}`}>
           <button type="button" className="btn btn-success">Add</button>
           </Link>
           </div>

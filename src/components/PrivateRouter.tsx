@@ -9,6 +9,7 @@ const PrivateRouter = (props:PrivateRouterProps) => {
     if(!role){
         return <Navigate to="/signin"/>
     }
+    
   return props.children
 }
 

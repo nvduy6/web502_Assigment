@@ -53,10 +53,6 @@ const AdminLayout = (props: Props) => {
           <Menu.Item key="7">Bill</Menu.Item>
           <Menu.Item key="8">Alex</Menu.Item>
         </SubMenu>
-        {/* <SubMenu key="sub2" icon={<TeamOutlined />} title="Team">
-          <Menu.Item key="8">Team 1</Menu.Item>
-          <Menu.Item key="9">Team 2</Menu.Item>
-        </SubMenu> */}
         <Menu.Item key="10" icon={<FileOutlined />}>
           Files
         </Menu.Item>
