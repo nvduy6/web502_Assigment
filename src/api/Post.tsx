@@ -8,3 +8,7 @@ export const addPost = (posts:IPost,)=>{
     const url = "/post";
     return instance.post(url,posts);
 }
+export const removePost = (id:number)=>{
+    const url =`/post/${id}`;
+    return instance.delete(url);
+}

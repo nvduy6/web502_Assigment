@@ -17,10 +17,10 @@ const WebsiteLayout = (props: Props) => {
           <Selider />
         </section>
         <main className="container">
-          <div className='mb-3'>
-            <div>
+          <div className='mb-2'>
+            <div className='py-2'>
               <h2 className="title-block-product text-center fs-2">Bộ sưu tập</h2>
-              <div className="slogan text-center fs-4 ">Bộ sưu tập thu đông nổi bật với các họa tiết tinh tế lại có mức giá rẻ.</div>
+              <div className="slogan text-center fs-5 ">Bộ sưu tập thu đông nổi bật với các họa tiết tinh tế lại có mức giá rẻ.</div>
             </div>
             <div className="row" data-masonry="{&quot;percentPosition&quot;: true }" style={{ position: 'relative', height: 410, marginTop: 20 }}>
               <div>
@@ -74,11 +74,11 @@ const WebsiteLayout = (props: Props) => {
 
           <div className="box-product  tabs-block  box-product-style2 box-st">
             <hr className='m-auto text-muted' style={{ width: "50% " }} />
-            <h2 className="title-block-product text-center fs-2 py-1">
+            <h2 className="title-block-product text-center fs-2 py-2">
               Tất cả sản phẩm<br />
               <i className="icon-title-1" />
             </h2>
-            <p className="slogan text-center fs-4">Tất cả sản phẩm của chúng tôi là những mẫu mới nhất được nhiều khách hàng quan tâm</p>
+            <p className="slogan text-center fs-5">Tất cả sản phẩm của chúng tôi là những mẫu mới nhất được nhiều khách hàng quan tâm</p>
             <div>
               <Category />
             </div>

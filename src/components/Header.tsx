@@ -1,9 +1,12 @@
-import React from 'react'
-import { NavLink, Link } from 'react-router-dom'
+import React, { useState } from 'react'
+import {Link } from 'react-router-dom'
 import { useName } from '../utils/localStorage'
+import {User} from '../type/User';
 const Header = () => {
+  const [user,setUser]= useState<User[]>([]);
   const handlerRemove = () => {
     localStorage.removeItem('user')
+    // setUser(user.filter(localStorage))
   }
   return (
 

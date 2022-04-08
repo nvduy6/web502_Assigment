@@ -76,17 +76,8 @@ const Add_pro = (props: ProductAddProps) => {
         </div>
         <div className="mb-3">
           <label htmlFor="exampleInputPassword1" className="form-label">Description</label>
-    <textarea cols={30} rows={5}{...register('desc')}/>
-
-
+          <textarea cols={30} rows={5}{...register('desc')} />
         </div>
-        {/* <div className="form-floating">
-          <label >description</label>
-          <textarea className="form-control" placeholder="Leave a comment here" id="floatingTextarea2"{...register('description')} >
-
-          </textarea>
-
-        </div> */}
         <div>
           <div>
             <label className="block text-sm font-medium text-gray-700">

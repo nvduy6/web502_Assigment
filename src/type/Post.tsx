@@ -1,5 +1,6 @@
 export interface IPost{
-id?:string,
+_id?:number,
 title:string,
+image:string,
 desc:string
 }

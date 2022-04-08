@@ -31,7 +31,7 @@ import { listSlider,addSlider, removeSlider } from './api/Slider';
 import List_slider from './pages/admin/slider/List_slider';
 import Add_slider from './pages/admin/slider/Add_slider';
 import { IPost } from './type/Post';
-import { addPost, listpost } from './api/Post';
+import { addPost, listpost,removePost } from './api/Post';
 
 
 function App() {
@@ -90,7 +90,7 @@ function App() {
   }
   const onHandeleUpdateCate = async (category: ICategory) => {
     const { data } = await updatecate(category);
-    setCategorys(categorys.map(item => item._id == data.id ? data : item));
+    setCategorys(categorys.map(item => item.slug == data.slug ? data : item));
   }
   // -------------------Slider------------------------
   useEffect(() => {
@@ -120,6 +120,10 @@ function App() {
   const onHandlerPost = async (post:IPost)=>{
     const {data} = await addPost(post);
     setPosts([...posts,data])
+  } 
+  const removePosts = (id:number)=>{
+    removePost(id)
+    setPosts(posts.filter(item=>item._id!==id))
   }
   return (
     <div className="App">
@@ -139,16 +143,17 @@ function App() {
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="products">
               <Route index element={<ProductManager products={products} onRemove={removeItem} />} />
-              <Route path='add' element={<Add_pro onAdd={onHandlerAdd} />} />
-              <Route path=":id/edit" element={<Edit_pro onUpdate={onHandlerUpdate} />} />
+              <Route path="add" element={<Add_pro onAdd={onHandlerAdd} />} />
+              <Route path="add" element={<Add_pro onAdd={onHandlerAdd} />} />
+              {/* <Route path=":id/edit" element={<Edit_pro onUpdate={onHandlerUpdate} />} /> */}
             </Route>
             <Route path='categorys'>
               <Route index element={<Category_list categorys={categorys} onRemoveCate={removecate} />} />
               <Route path='add' element={<Category_add name='duy' onAddcate={onHandlerCate} />} />
-              <Route path=':id/edit' element={<Category_edit onUpdateCate={onHandeleUpdateCate} />} />
+              <Route path=':slug/edit' element={<Category_edit onUpdateCate={onHandeleUpdateCate} />} />
             </Route>
             <Route path="posts">
-              <Route index element={<List_post post={posts} />} />
+              <Route index element={<List_post post={posts} onRemovePost={removePosts}/>} />
               <Route path='add' element={<Add_post onAddPost={onHandlerPost}/>} />
               <Route path=':id/edit' element={<Edit_post />} />
             </Route>

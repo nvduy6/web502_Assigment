@@ -28,9 +28,9 @@ const AdminLayout = (props: Props) => {
   return (
     <Layout style={{ minHeight: '100vh' }}>
     <Sider collapsible >
-    <Image className='logo'
-      width={60}
-      src="https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg"
+    <Image className='logo p-3'
+      width={90}
+      src="https://fs-07.web4s.vn/uploads/plugin/setting/3/th-i-trang-cong-s-logo-1.png"
     />
       <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
         <Menu.Item key="1" icon={<HomeOutlined />}>
@@ -45,18 +45,18 @@ const AdminLayout = (props: Props) => {
         <Menu.Item key="4" icon={<DesktopOutlined />}>
           <Link to={"/admin/posts"}>Blog</Link>
         </Menu.Item>
-        <Menu.Item key="4" icon={<DesktopOutlined />}>
+        <Menu.Item key="5" icon={<DesktopOutlined />}>
           <Link to={"/admin/sliders"}>Slider</Link>
         </Menu.Item>
         <SubMenu key="sub1" icon={<UserOutlined />} title="User">
-          <Menu.Item key="5">Tom</Menu.Item>
-          <Menu.Item key="6">Bill</Menu.Item>
-          <Menu.Item key="7">Alex</Menu.Item>
+          <Menu.Item key="6">Tom</Menu.Item>
+          <Menu.Item key="7">Bill</Menu.Item>
+          <Menu.Item key="8">Alex</Menu.Item>
         </SubMenu>
-        <SubMenu key="sub2" icon={<TeamOutlined />} title="Team">
+        {/* <SubMenu key="sub2" icon={<TeamOutlined />} title="Team">
           <Menu.Item key="8">Team 1</Menu.Item>
           <Menu.Item key="9">Team 2</Menu.Item>
-        </SubMenu>
+        </SubMenu> */}
         <Menu.Item key="10" icon={<FileOutlined />}>
           Files
         </Menu.Item>

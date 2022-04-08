@@ -31,11 +31,11 @@ const Home = (props: Props) => {
                   <div className="col-md-12 col-sm-12 col-xs-12 list-item box-blogs ">
                   <Link className='text-decoration-none' to={`/producst/detail/${item._id}`}>
                     <div className="item-blogs clearfix">
-                      <div className="img-blogs">
+                      <div className="img-blogs border border-secondary">
                         <img style={{ width: 293 }} src={item.image} className="img-item-product" />
                       </div>
-                      <div className="info text-center">
-                        <h4 className="title-product">
+                      <div className="info text-center mt-2">
+                        <h4 className="title-product fs-4">
                             {item.name}
                         </h4>
                         <div className="price price-inline">
@@ -43,9 +43,6 @@ const Home = (props: Props) => {
                            Giá: {item.price} đ
                           </p>
                         </div>
-                        {/* <div className="show-list">
-                          <a href="javascript:void(0)" className="btn btn-main-2 btn-black-2 btn-shop-cart" item-id={32} product-id={32} status-store={0}>Mua hàng</a>
-                        </div> */}
                         <div className="content-attr hidden">
                         </div>
                       </div>
@@ -64,7 +61,7 @@ const Home = (props: Props) => {
             <div className="col">
              <img style={{width:"100%"}} src="https://fashion01.web4s.vn/uploads/plugin/custom_img/2017-06-06/custom-banner-col-6.jpg" alt="" />
             </div>
-            <div className="col">
+            <div className="col ">
              <img style={{width:"100%"}} src="https://fashion01.web4s.vn/uploads/plugin/custom_img/2017-06-06/custom-banner-col-61.jpg" alt="" />
             </div>
           </div>
