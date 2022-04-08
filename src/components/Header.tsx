@@ -3,7 +3,12 @@ import {Link } from 'react-router-dom'
 import { useName } from '../utils/localStorage'
 import {User} from '../type/User';
 const Header = () => {
-  const [user,setUser]= useState<User[]>([]);
+  const [user,setUser]= useState(1)
+  const addUser = ()=>{
+    if(localStorage.getItem('user')){
+      return JSON.parse(localStorage.getItem('user')as string).user._id
+    }
+  }
   const handlerRemove = () => {
     localStorage.removeItem('user')
     // setUser(user.filter(localStorage))
@@ -31,7 +36,7 @@ const Header = () => {
             <div>
               <span>Hello: {useName()} </span>
 
-              <button type="button" className="btn btn-primary secondary" onClick={handlerRemove}> Logout</button></div>
+              <button type="button" className="btn btn-primary secondary" onClick={()=>{localStorage.removeItem('user');setUser(0)}}> Logout</button></div>
 
           ) : (
             <div className="text-end">
