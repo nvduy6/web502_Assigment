@@ -3,6 +3,7 @@ import { IProduct } from "../type/Product";
 import { isAuthenticate } from "../utils/localStorage";
 import instance from "./Instance";
 const {token,user}= isAuthenticate()
+console.log(token)
 export const list = ()=>{
     const url = "/products";
     return instance.get(url);
@@ -26,6 +27,10 @@ export const read = (id:string|undefined)=>{
     return instance.get(url)
 }
 export const update = (product:IProduct)=>{
-    const url = `/products/${product._id}`;
-    return instance.put(url,product);
+    const url = `/products/${product._id}/${user._id}`;
+    return instance.put(url,product,{
+        headers:{
+            "Authorization":`Bearer ${token}`
+        }
+    });
 }

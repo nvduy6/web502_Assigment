@@ -145,7 +145,7 @@ function App() {
               <Route index element={<PrivateRouter><ProductManager products={products} onRemove={removeItem} /></PrivateRouter> } />
               {/* <Route path="add" element={<Add_pro onAdd={onHandlerAdd} />} /> */}
               <Route path="add/:userId" element={<Add_pro onAdd={onHandlerAdd} />} />
-              <Route path=":id/edit" element={<Edit_pro onUpdate={onHandlerUpdate} />} />
+              <Route path=":id/:userId/edit" element={<Edit_pro onUpdate={onHandlerUpdate} />} />
             </Route>
             <Route path='categorys'>
               <Route index element={<Category_list categorys={categorys} onRemoveCate={removecate} />} />

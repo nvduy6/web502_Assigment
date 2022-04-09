@@ -7,8 +7,6 @@ import { ICategory } from '../../../type/Category';
 import { listCate } from '../../../api/Category';
 import axios from 'axios';
 type ProductAddProps = {
-  // name: string,
-  // desc: string,
   onAdd: (product: TypeInputs) => void;
 }
 type Props = {

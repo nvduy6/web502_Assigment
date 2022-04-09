@@ -44,15 +44,15 @@ const Edit_pro = (props: Edit_proProps) => {
         const CLOUDINARY_PRESET = "okwdgnez";
         const file = data.image[0];
         if (typeof file == 'object') {
-                    const formdata = new FormData();
-        formdata.append("file", file);
-        formdata.append("upload_preset", CLOUDINARY_PRESET);
-        const response = await axios.post(CLOUDINARY_API, formdata, {
-          headers: {
-            "Content-Type": "application/form-data"
-          },
-        });
-        data.image = response.data.url;
+            const formdata = new FormData();
+            formdata.append("file", file);
+            formdata.append("upload_preset", CLOUDINARY_PRESET);
+            const response = await axios.post(CLOUDINARY_API, formdata, {
+                headers: {
+                    "Content-Type": "application/form-data"
+                },
+            });
+            data.image = response.data.url;
         }
 
         props.onUpdate(data);
@@ -79,11 +79,14 @@ const Edit_pro = (props: Edit_proProps) => {
                 {prouducts && (
                     <div className="mb-3">
                         <label htmlFor="exampleInputPassword1" className="form-label">Image</label>
-                        <img style={{width:"90px",height:"70px"}} src={prouducts.image} alt="" />
+                        <img style={{ width: "90px", height: "70px" }} src={prouducts.image} alt="" />
                         {/* <input type="file" className="form-control" {...register('image')} /> */}
                     </div>
                 )}
-
+                <div className="mb-3">
+                    <label htmlFor="exampleInputPassword1" className="form-label">Image</label>
+                    <input type="file" className="form-control" {...register('image')} />
+                </div>
                 <div className="mb-3">
                     <label htmlFor="exampleInputPassword1" className="form-label">Description</label>
                     <textarea cols={30} rows={5}{...register('desc')} />
