@@ -9,8 +9,7 @@ import { Layout, Menu, Breadcrumb } from 'antd';
 import {
   DesktopOutlined,
   HomeOutlined ,
-  FileOutlined,
-  TeamOutlined,
+  UndoOutlined,
   UserOutlined,
 } from '@ant-design/icons';
 
@@ -53,8 +52,8 @@ const AdminLayout = (props: Props) => {
           <Menu.Item key="7">Bill</Menu.Item>
           <Menu.Item key="8">Alex</Menu.Item>
         </SubMenu>
-        <Menu.Item key="10" icon={<FileOutlined />}>
-          Files
+        <Menu.Item key="10" icon={<UndoOutlined />}>      
+        <Link to="/">Vào website</Link>
         </Menu.Item>
       </Menu>
     </Sider>

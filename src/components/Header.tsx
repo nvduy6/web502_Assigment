@@ -1,12 +1,19 @@
 import React, { useState } from 'react'
-import {Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useName } from '../utils/localStorage'
-import {User} from '../type/User';
+import { User } from '../type/User';
+import { Badge, Avatar } from 'antd';
+import {
+  ShoppingCartOutlined,
+  HomeOutlined,
+  UndoOutlined,
+  UserOutlined,
+} from '@ant-design/icons';
 const Header = () => {
-  const [user,setUser]= useState(1)
-  const addUser = ()=>{
-    if(localStorage.getItem('user')){
-      return JSON.parse(localStorage.getItem('user')as string).user._id
+  const [user, setUser] = useState(1)
+  const addUser = () => {
+    if (localStorage.getItem('user')) {
+      return JSON.parse(localStorage.getItem('user') as string).user._id
     }
   }
   const handlerRemove = () => {
@@ -33,10 +40,13 @@ const Header = () => {
         </form>
         {localStorage.getItem('user') ?
           (
-            <div>
+            <div >
+              {/* <Badge count={2} offset={[1, 2]}>
+                <ShoppingCartOutlined style={{color:"white",width:"5em"}} />
+              </Badge>, */}
               <span>Hello: {useName()} </span>
 
-              <button type="button" className="btn btn-primary secondary" onClick={()=>{localStorage.removeItem('user');setUser(0)}}> Logout</button></div>
+              <button type="button" className="btn btn-primary secondary" onClick={() => { localStorage.removeItem('user'); setUser(0) }}> Logout</button></div>
 
           ) : (
             <div className="text-end">

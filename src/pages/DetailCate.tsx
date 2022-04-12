@@ -4,6 +4,7 @@ import { getcate } from '../api/Category';
 import { ICategory } from '../type/Category'
 import { IProduct } from '../type/Product';
 import {read} from "../api/Product"
+import { Breadcrumb, Rate } from 'antd';
 type Props ={
 
 }
@@ -20,6 +21,12 @@ const DetailCate = (post:Props) => {
     },[slug])
     console.log(slug);
   return (
+    <div>
+       <Breadcrumb style={{ margin: '8px 8px' }}>
+        <Breadcrumb.Item><Link to="/">Trang chủ</Link></Breadcrumb.Item>
+        <Breadcrumb.Item>Danh mục</Breadcrumb.Item>
+        <Breadcrumb.Item>{category.name}</Breadcrumb.Item>
+      </Breadcrumb>
     <div className="row g-4 row-cols-2 row-cols-lg-4">
           {category.map((item, index) => {
             return (
@@ -54,6 +61,7 @@ const DetailCate = (post:Props) => {
             )
           })}
 
+        </div>
         </div>
   )
 }
