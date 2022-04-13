@@ -6,11 +6,10 @@ import { useEffect, useState } from 'react';
 import { ICategory } from '../../../type/Category';
 import { listCate } from '../../../api/Category';
 import axios from 'axios';
+import * as yup from "yup";
+import {yupResolver} from "@hookform/resolvers/yup";
 type ProductAddProps = {
   onAdd: (product: TypeInputs) => void;
-}
-type Props = {
-
 }
 type TypeInputs = {
   name: string,
@@ -20,6 +19,13 @@ type TypeInputs = {
   category: string
 }
 const Add_pro = (props: ProductAddProps) => {
+  const sChema =  yup.object({
+    name:yup.string().required(),
+    price:yup.number().positive().integer().required(),
+    desc:yup.string().required(),
+    image:yup.string(),
+    category:yup.string().required(),
+  })
   const [categorys, setCategory] = useState<ICategory[]>([]);
   useEffect(() => {
     const getCategorys = async () => {
@@ -28,7 +34,7 @@ const Add_pro = (props: ProductAddProps) => {
     }
     getCategorys();
   }, []);
-  const { register, handleSubmit, formState: { errors } } = useForm<TypeInputs>();
+  const { register, handleSubmit, formState: { errors } } = useForm<TypeInputs>({resolver:yupResolver(sChema)});
   const navigate = useNavigate();
   const onSubmit: SubmitHandler<TypeInputs> = async data => {
     const CLOUDINARY_API = "https://api.cloudinary.com/v1_1/duynv/image/upload";
@@ -63,18 +69,25 @@ const Add_pro = (props: ProductAddProps) => {
         <div className="mb-3">
           <label htmlFor="exampleInputEmail1" className="form-label">Name</label>
           <input type="text" className="form-control" {...register('name')} />
+          <p>{errors.name?.message}</p>
         </div>
         <div className="mb-3">
           <label htmlFor="exampleInputPassword1" className="form-label">Price</label>
           <input type="number" className="form-control" {...register('price')} />
+          <p>{errors.price?.message}</p>
+
         </div>
         <div className="mb-3">
           <label htmlFor="exampleInputPassword1" className="form-label">Image</label>
           <input type="file" className="form-control" {...register('image')} />
         </div>
+        <p>{errors.image?.message}</p>
+
         <div className="mb-3">
           <label htmlFor="exampleInputPassword1" className="form-label">Description</label>
           <textarea cols={30} rows={5}{...register('desc')} />
+          <p>{errors.desc?.message}</p>
+
         </div>
         <div>
           <div>
@@ -94,6 +107,8 @@ const Add_pro = (props: ProductAddProps) => {
 
 
               </select>
+          <p>{errors.category?.message}</p>
+
             </div>
           </div >
         </div >
