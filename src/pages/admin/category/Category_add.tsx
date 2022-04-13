@@ -2,6 +2,8 @@ import React from 'react'
 import {SubmitHandler, useForm} from 'react-hook-form';
 import {Link, useNavigate} from 'react-router-dom';
 import { Table,Space,Button, Breadcrumb } from 'antd';
+import {yupResolver} from "@hookform/resolvers/yup";
+import * as yup from "yup";
 type CategoryAddProps={
     name:string
     onAddcate:(categorys:TypeInputs)=>void;
@@ -11,7 +13,10 @@ type TypeInputs={
   slug:string,
 }
 const Category_add = (props:CategoryAddProps) => {
-const {register,handleSubmit,formState:{errors}} = useForm<TypeInputs>();
+  const sChema = yup.object({
+    name:yup.string().required(),
+  })
+const {register,handleSubmit,formState:{errors}} = useForm<TypeInputs>({resolver:yupResolver(sChema)});
 const navigate = useNavigate();
 const onSubmit:SubmitHandler<TypeInputs>=data=>{
     props.onAddcate(data);
@@ -30,6 +35,7 @@ const onSubmit:SubmitHandler<TypeInputs>=data=>{
     <label htmlFor="exampleInputEmail1" className="form-label">Name</label>
     <input type="text" className="form-control" placeholder='Nhap ten...' {...register('name')} />
   </div>
+  <p>{errors.name?.message}</p>
   <button type="submit" className="btn btn-primary">Submit</button>
 </div>
 </form>
